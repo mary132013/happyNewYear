@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+   html {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+  </style>
+
+    <meta charset="unicode">
+    <title>Приём в школу иностранного языка</title> 
+    <link rel="stylesheet"  type="text/css" href="C:\Users\Public\styles.css">
+	<script src="C:\Users\Admin\Documents\Колледж\3 Курс\HTML\4 js.js"></script>	
+	
+</head>
+
+<body background="C:\Users\Admin\Pictures\Фон1.png";
+background-repeat: no-repeat;
+background-attachment:scroll;
+background-size: 100%;
+bgproperties="fixed">
+
+<div style="position:fixed; top:20px; left:20px" >
+<h1><span id=r style="color:purple">Заполните анкету</span></h1>
+<HR>
+<div id="moving-element">
+<ul>
+    <li><a href="C:\Users\Admin\Documents\Колледж\3 Курс\HTML\1практ js.html">1 практическая</a></li>
+    <li><a href="C:\Users\Admin\Documents\Колледж\3 Курс\HTML\pr2.html">2 практическая</a></li>
+    <li><a href="C:\Users\Admin\Documents\Колледж\3 Курс\HTML\3pr.html">3 практическая</a></li>
+</ul>
+</div></div></div>
+<button id="b1">Обратно</button>
+
+<div style="position:absolute; top:120px; left:20%">
+<p>Фамилия&nbsp;<input type=txt name=registr value=""><br><br>
+Имя&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=txt name=registr value=""><br><br>
+Отчество&nbsp;<input type=txt name=registr value=""><br><br>
+
+
+Возраст<br>
+<select name="select" multiple="multiple">
+<option selected>0-6</option>
+<option selected>6-12</option>
+<option selected>12-18</option>
+<option selected>18+</option>
+</select><br><br>
+
+<label for="story">E-mail</label><br>
+<textarea id="story" name="story" rows="7" cols="35"></textarea>
+
+</div>
+<div style="position:absolute; top:120px; left:50%">
+
+<h2><strong>Проверка личности</strong></h2>
+<div class="brd">
+Как по вашему мнению расшифровывается аббревиатура &quot;ОС&quot;?</p>
+    <p><input type="radio" name="answer" value="a1">Офицерский состав<Br>
+    <input type="radio" name="answer" value="a2">Операционная система<Br>
+    <input type="radio" name="answer" value="a3">Большой полосатый мух</p >
+</div>
+
+  <h1>Изучение языков</h1>
+
+    <p><label for="language">Язык:</label>
+    <input type="text" name="language" id="language"></p>
+
+    <p><label for="level">Уровень владения языком:</label>
+    <select name="level" id="level">
+      <option value="beginner">Начинающий</option>
+      <option value="intermediate">Средний</option>
+      <option value="advanced">Продвинутый</option>
+    </select></p>
+
+    <p><label for="goals">Цели изучения языка:</label>
+	<select name="goals" id="goals">
+	<option value="book">Выберите вариант</option>
+      <option value="Читать книги в оригинале">Я хочу читать книги в оригинале</option>
+      <option value="Путешествовать">Я люблю путешествовать</option>
+      <option value="Понимать что поётся в песнях">Мне нравятся песни на этом языке</option>
+	  <option value="add">Другое</option>
+    </select></p>
+	
+	
+	<p><label for="country" id="for_country" style="display:none">В какую страну вы хотите поехать:</label>
+    <input type="text" id="country" style="display:none;">
+	<label for="goals_travel" id="for_goals_travel" style="display:none">С какой целью вы путешествуете:</label>
+	<input onchange=traveling() type="text" id="goals_travel" style="display:none;">
+	</p>
+	
+	
+	<p><label for="name_song" id="for_name_song" style="display:none">Какая ваша любимая песня:</label>
+    <input type="text" id="name_song" style="display:none;">
+	<label for="artist" id="for_artist" style="display:none">Кто её исполняет:</label>
+	<input onchange=singing() type="text" id="artist" style="display:none;">
+	</p>
+	
+	<p><label for="book_name" id="for_book_name" style="display:none">Какая ваша любимая книга:</label>
+    <input onchange=reading() type="text" id="book_name" style="display:none;">
+	</p>
+	
+	<button onclick="submit()">Отправить</button>
+  
+<p><a href="https://pilot-school.ru/politika-konfidentsialnosti">Ознакомьтесь с политикой конфиденциальности</a><br>
+<input type=checkbox id=c checked>Ознакомлен(а)<br>
+</p></p>
+<input type=button value="Далее">
+
+</div>
+  <script>
+    function submit() {
+  const language = document.querySelector("#language").value;
+  const level = document.querySelector("#level").value;
+  const goals = document.querySelector("#goals").value;
+  const studyLanguage = new StudyLanguage(language, level, goals);
+
+  console.log(studyLanguage.sayHello());
+  
+}
+function traveling(){
+  const language = document.querySelector("#language").value;
+  const country = document.querySelector("#country").value;
+  const level = document.querySelector("#level").value;
+  const goals_travel = document.querySelector("#goals_travel").value;
+  const travel = new Travels(language, level, goals_travel, country);
+  console.log(travel.sayHello());
+}
+function singing(){
+  const language = document.querySelector("#language").value;
+  const name = document.querySelector("#name_song").value;
+  const artist = document.querySelector("#artist").value;
+  const level = document.querySelector("#level").value;
+  const goals = document.querySelector("#goals").value;
+  const song = new FavoriteSong(language, level, goals, name, artist);
+  console.log(song.GetSongInfo(name, artist, language));
+}
+function reading(){
+  const language = document.querySelector("#language").value;
+  const book_name = document.querySelector("#book_name").value;
+  const level = document.querySelector("#level").value;
+  const goals = document.querySelector("#goals").value;
+  const book = new FavoriteBook(language, level, goals, book_name);
+  console.log(book.getname());
+}
+document.querySelector("#goals").addEventListener("change", function(){
+  const value=this.value;
+  if (value=="Путешествовать"){
+  document.querySelector("#country").style.display="block";
+  document.querySelector("#for_country").style.display="block";
+  document.querySelector("#goals_travel").style.display="block";
+  document.querySelector("#for_goals_travel").style.display="block";
+  }
+  else if(value=="Понимать что поётся в песнях"){
+  document.querySelector("#for_name_song").style.display="block";
+  document.querySelector("#name_song").style.display="block";
+  document.querySelector("#for_artist").style.display="block";
+  document.querySelector("#artist").style.display="block";
+  }
+  else if(value=="Читать книги в оригинале"){
+  document.querySelector("#for_book_name").style.display="block";
+  document.querySelector("#book_name").style.display="block";
+  }
+  });
+  </script>
+
+<!--<div id="heart">
+  <div class="ball" id="b1" style="position: absolute; left: 1345px; top: 60px;"></div>
+  <div class="ball" id="b2" style="position: absolute; left: 1355px; top: 50px;"></div>
+  <div class="ball" id="b3" style="position: absolute; left: 1370px; top: 45px;"></div>
+  <div class="ball" id="b4" style="position: absolute; left: 1383px; top: 50px;"></div>
+  <div class="ball" id="b5" style="position: absolute; left: 1391px; top: 65px;"></div>
+  <div class="ball" id="b6" style="position: absolute; left: 1388px; top: 80px;"></div>
+  <div class="ball" id="b7" style="position: absolute; left: 1375px; top: 95px;"></div>
+  <div class="ball" id="b8" style="position: absolute; left: 1360px; top: 110px;"></div>
+  <div class="ball" id="b9" style="position: absolute; left: 1345px; top: 125px;"></div>
+  <div class="ball" id="b10" style="position: absolute; left: 1330px; top: 110px;"></div>
+  <div class="ball" id="b11" style="position: absolute; left: 1315px; top: 95px;"></div>
+  <div class="ball" id="b12" style="position: absolute; left: 1302px; top: 80px;"></div>
+  <div class="ball" id="b13" style="position: absolute; left: 1299px; top: 65px;"></div>
+  <div class="ball" id="b14" style="position: absolute; left: 1307px; top: 50px;"></div>
+  <div class="ball" id="b15" style="position: absolute; left: 1320px; top: 45px;"></div>
+  <div class="ball" id="b16" style="position: absolute; left: 1335px; top: 50px;"></div>
+</div>-->
+
+<script>
+function* generatorFunction(value) {
+  while (true) {
+    value = yield value / 10
+  }
+}
+
+
+const element = document.getElementById('moving-element');
+const generator = generatorFunction(0);
+let coord = element.getBoundingClientRect();
+const y = coord.top;
+
+document.getElementById('b1').addEventListener('click', function() {
+  let coords = element.getBoundingClientRect();
+  var y1 = coords.top;
+//  element.style.top = y1 + generator.next(5).value + "px";
+  var interval = setInterval(() => {
+  let coords = element.getBoundingClientRect();
+  var y1 = coords.top;
+  element.style.top = y1 + generator.next(5).value + "px";
+}, 300);
+setTimeout(function() { 
+  clearInterval(interval);
+}, 5000);
+});
+
+var interval = setInterval(() => {
+  let coords = element.getBoundingClientRect();
+  var y1 = coords.top;
+  element.style.top = y1 + generator.next(1).value + "px";
+}, 500);
+
+
+/*
+const element = document.getElementById('moving-element');
+const generator = generatorFunction(0);
+let coord = element.getBoundingClientRect();
+const y = coord.top;
+var interval = setInterval(() => {
+	let coords = element.getBoundingClientRect();
+	var y1 = coords.top;
+    const button = document.getElementById('b1');
+	if (b1.click){
+	button.addEventListener('click', function() {
+	element.style.top = y1 + generator.next(5).value + "px";
+	});
+	}
+	element.style.top = y1 + generator.next(1).value + "px";
+});
+}, 500);
+
+setTimeout(function() { 
+  clearInterval(interval);
+}, 9000);*/
+//6pr
+/*function* generator1(value) {
+  while (true) {
+    value = yield value 
+  }
+}
+
+const balls = document.querySelectorAll(".ball");
+console.log(balls);
+var ys=[];
+var xs=[];
+for (var i=0; i<balls.length; i++){
+let coords=balls[i].getBoundingClientRect();
+ys[i]= coords.top;
+xs[i]=coords.left
+}
+console.log(ys);
+console.log(xs);
+const gen = generator1(1);
+gen.next();
+var ras = gen.next(ys[1]).value;
+console.log(ras);
+var r=Math.floor((ras-ys[0])/5);
+console.log(r);
+for (i=0; i<5; i++){
+balls[0].style.top += r; 
+console.log(balls[0].style.top += r);
+}
+*/
+
+/*
+function* generateCoordinates() {
+    
+	yield;
+    
+}		
+			
+const element = document.getElementById('moving-element');
+const coordinatesGenerator = generateCoordinates(); 
+const r1 = coordinatesGeneratory.next();
+setInterval(() => {
+    coordinatesGenerator.next(5);
+}, 1000); */
+/*setInterval(() => {
+    element.style.top = y + coordinatesGenerator.next(4) + "px";
+}, 3000); // вызываем функцию каждую секунду*/
+
+/*function* generateCoordinates(startX, startY, stepX, stepY, windowWidth, windowHeight) {
+    let x = startX;
+    let y = startY;
+    while (x<windowHeight) {
+		val=(yield x)
+		if (val is not None){
+			x=val
+			y=val
+		}
+		yield [x, y];
+        x += stepX;
+        y += stepY;
+        if (x < 0 || x > windowWidth || y < 0 || y > windowHeight) {
+            x = startX;
+            y = startY;
+        }
+    }
+}
+i = 0
+while i < maximum:
+        val = (yield i)
+        # Если указано значение, то изменяем счетчик
+        if val is not None:
+            i = val
+        else:
+            i += 1
+			
+			
+const element = document.getElementById('moving-element');
+let coords = element.getBoundingClientRect();
+var x = coords.left;
+var y = coords.top;
+const coordinatesGenerator = generateCoordinates(x, y, 0, 5, document.documentElement.clientWidth, document.documentElement.clientHeight); // начальные координаты (50, 50), шаг по X - 10, по Y - 5, размеры окна браузера
+setInterval(() => {
+    const [x, y] = coordinatesGenerator.next().value;
+    element.style.left = x + "px";
+    element.style.top = y + "px";
+}, 100); // вызываем функцию каждую секунду
+
+
+const element1 = document.getElementById('moving-element1');
+let coords1 = element.getBoundingClientRect();
+var x1 = coords.left;
+var y1 = coords.top;
+const coordinatesGenerator1 = generateCoordinates(x1, y1, 5, 0, document.documentElement.clientWidth, document.documentElement.clientHeight); // начальные координаты (50, 50), шаг по X - 10, по Y - 5, размеры окна браузера
+setInterval(() => {
+	const [x, y] = coordinatesGenerator1.next(50).value;
+    const [x, y] = coordinatesGenerator1.next().value;
+    element1.style.left = x + "px";
+    element1.style.top = y + "px";
+}, 1000); // вызываем функцию каждую секунду
+
+//const balls = document.querySelectorAll(".ball");
+//console.log(balls);
+*/
+
+
+</script>
+</body>
+
+</html> 
+
+
+
+
+
+
+
