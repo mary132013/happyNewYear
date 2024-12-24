@@ -8,6 +8,7 @@
             if (countdown < 0) {
                 clearInterval(countdownInterval);
                 textElement.style.display = 'none'; 
+                textElement.innerHTML = '';  
                 startMessage();  
             }
         }, 1000); 
@@ -67,6 +68,9 @@
 
     function changeBackground1() {
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
+    } 
+function changeBackground2() {
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-32.jpg')";
     }
 
     function typeThirdMessage(message) {
@@ -79,7 +83,8 @@
                 index++; 
                 setTimeout(type, 100); 
             } else { 
-                setTimeout(() => {  
+                setTimeout(() => {                      
+                    changeBackground2(); 
                     const fourthMessage = "Это был не вопрос";  
                     index = 0;  
                     textElement.innerHTML = '';  
