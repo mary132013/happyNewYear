@@ -18,13 +18,13 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            overflow: hidden; /* Скрыть все элементы, кроме текста */
+            overflow: hidden; 
         }
         .loader {
-            display: block; /* Сделать загрузчик видимым */
-            font-size: 50px; /* Размер сердца */
-            color: purple; /* Цвет сердца изменен на фиолетовый */
-            animation: heartbeat 1s infinite; /* Анимация пульсации */
+            display: block;
+            font-size: 50px;
+            color: purple;
+            animation: heartbeat 1s infinite; 
         }
         @keyframes heartbeat {
             0%, 100% {
@@ -35,23 +35,20 @@
             }
         }
         #text {
-            display: none; /* Скрыть текст изначально */
+            display: none;
             font-size: 24px;
             color: purple;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для текста */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
-
 <body>
-    <div class="loader">❤️</div> <!-- Сердце как загрузчик -->
-
+    <div class="loader">💜</div> <!-- Сердце как загрузчик -->
     <div id="text"></div>
-
     <script>
         function delayLoad() {
             setTimeout(() => {
@@ -60,30 +57,29 @@
                 const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
                 let index = 0;
 
+                // Запускаем смену фона
+                changeBackground();
+
                 function type() {
                     if (index < message.length) {
                         textElement.innerHTML += message.charAt(index);
                         index++;
-                        setTimeout(type, 100); // Задержка между буквами
+                        setTimeout(type, 100); 
                     } else {
-                        // После завершения вывода первого текста меняем фон и запускаем вывод нового сообщения
-                        changeBackground(() => {
-                            setTimeout(() => {
-                                const newMessage = 'Так вот, пожалуй, пора тебя помучить';
-                                index = 0; // Сбрасываем индекс для нового сообщения
-                                textElement.innerHTML = ''; // Очищаем текст перед новым выводом
-                                typeNewMessage(newMessage); // Запускаем вывод нового сообщения
-                            }, 1000); // Задержка перед новым сообщением
-                        });
+                        setTimeout(() => {
+                            const newMessage = 'Так вот, пожалуй, пора тебя помучить';
+                            index = 0; 
+                            textElement.innerHTML = '';
+                            typeNewMessage(newMessage); 
+                        }, 1000); 
                     }
                 }
-
                 type();
-                document.querySelector('.loader').style.display = 'none'; // Скрыть сердце после загрузки текста
+                document.querySelector('.loader').style.display = 'none'; 
             }, 10000); 
         }
 
-        function changeBackground(callback) {
+        function changeBackground() {
             const backgrounds = [
                 'images/photo_2024-12-24_18-27-11.jpg',
                 'images/photo_2024-12-24_18-27-16.jpg',
@@ -93,14 +89,12 @@
 
             // Меняем фон каждые 5 секунд
             const intervalId = setInterval(() => {
-                currentBackground = (currentBackground + 1) % backgrounds.length; // Увеличиваем индекс фона
-                document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); // Меняем фон
-            }, 30000);
-                        // Останавливаем смену фона через 30 секунд
-            setTimeout(() => clearInterval(intervalId), 300000);
+                currentBackground = (currentBackground + 1) % backgrounds.length; 
+                document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); 
+            }, 5000); // Смена фона каждые 5 секунд
 
-            // Вызываем коллбэк для смены фона
-            callback();
+            // Останавливаем смену фона через 30 секунд
+            setTimeout(() => clearInterval(intervalId), 30000);
         }
 
         function typeNewMessage(message) {
@@ -114,7 +108,6 @@
                     setTimeout(type, 100); // Задержка между буквами
                 }
             }
-
             type();
         }
 
@@ -122,4 +115,3 @@
     </script>
 </body>
 </html>
-
