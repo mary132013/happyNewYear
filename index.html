@@ -56,10 +56,7 @@
                 textElement.style.display = 'block';
                 const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
                 let index = 0;
-
-                // Запускаем смену фона
-                changeBackground();
-
+                document.body.style.backgroundImage = url('images/photo_2024-12-24_18-27-16.jpg'); 
                 function type() {
                     if (index < message.length) {
                         textElement.innerHTML += message.charAt(index);
