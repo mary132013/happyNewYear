@@ -139,13 +139,30 @@ function changeBackground2() {
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
         optionDiv.textContent = option;
-        optionDiv.onclick = () => {
-            // Здесь вы можете добавить любое действие, которое хотите выполнить при нажатии
-            alert(Вы выбрали: ${option});
-            // Или выполните другое действие, например:
-            // console.log(Вы выбрали: ${option});
-            // Или можете вызвать другую функцию
-            // someFunction(option);
+       optionDiv.onclick = () => {
+            const resultDiv = document.createElement('div');
+            document.body.appendChild(resultDiv); // Добавляем результат в тело документа
+            
+            if (option === "13 июня 2013") {
+                // Меняем фон
+               document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
+
+                // Выводим текст "молодец" по буквам
+                const text = "молодец";
+                let index = 0;
+
+                const interval = setInterval(() => {
+                    if (index < text.length) {
+                        resultDiv.textContent += text[index];
+                        index++;
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 500); // Измените скорость вывода текста здесь (500 мс)
+            } else {
+                resultDiv.textContent = "не угадала";
+               document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
+            }
         };
         optionsDiv.appendChild(optionDiv);
     });
