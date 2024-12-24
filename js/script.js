@@ -137,7 +137,7 @@
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
         optionDiv.textContent = option;
-        optionDiv.onclick = () => alert(Вы выбрали: ${option}); // Исправлено использование шаблонной строки
+        
         optionsDiv.appendChild(optionDiv);
     });
 
