@@ -142,26 +142,31 @@ function showOptions() {
         optionDiv.className = 'option';
         optionDiv.textContent = option;
         optionDiv.onclick = () => {
+            // Очищаем предыдущие результаты
+            const existingResults = document.querySelectorAll('.result');
+            existingResults.forEach(res => res.remove());
+
             const resultDiv = document.createElement('div');
             resultDiv.className = 'result'; // Добавляем класс для стилизации
-           
-             // Создаем контейнер для результата с фоном
+            
+            // Создаем контейнер для результата с фоном
             const textContainer = document.createElement('div');
             textContainer.className = 'text-background'; // Добавляем класс для фона
             textContainer.appendChild(resultDiv); // Добавляем результат в контейнер
             
             document.body.appendChild(textContainer); // Добавляем контейнер на страницу
+
             if (option === "13 июня 2013") {
                 // Меняем фон
                 document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
-resultDiv.style.color = 'white'; // Цвет для "не угадала"
+                resultDiv.style.color = 'white'; // Цвет для "молодец"
+                
                 // Выводим текст "молодец" по буквам
                 const text = "молодец";
                 let index = 0;
 
                 const interval = setInterval(() => {
                     if (index < text.length) {
-                        resultDiv.style.color = 'white'; // Цвет для "не угадала"
                         resultDiv.textContent += text[index];
                         index++;
                     } else {
@@ -169,8 +174,8 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
                         resultDiv.style.opacity = 1; // Плавное появление текста
                         // Запускаем функцию для вывода следующего текста
                         setTimeout(() => {
-                             resultDiv.textContent='';
-                            displayDebutSongMessage();
+                            resultDiv.textContent = ''; // Очищаем текст перед следующим сообщением
+                            displayDebutSongMessage(); // Вызов функции, если необходимо
                         }, 1000); // Задержка перед выводом следующего текста
                     }
                 }, 500); // Измените скорость вывода текста здесь (500 мс)
@@ -188,21 +193,15 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
     const textElement = document.getElementById('text');
     textElement.appendChild(optionsDiv);
 }
+
 function displayDebutSongMessage() {
-     const textElement = document.getElementById('text');   
-     const resultDiv = document.createElement('div');
-     resultDiv.textContent='';
-     textElement.innerHTML = '';   
-    //const messageDiv = document.createElement('div');
-    //messageDiv.className = 'debut-message'; // Класс для стилизации сообщения
-    //document.body.appendChild(messageDiv);
-    
+    const textElement = document.getElementById('text');   
+    textElement.innerHTML = ''; // Очищаем текст перед новым сообщением
     const message = "Была мысль спросить про дебютную песню... но это не интересно (кто-то всё равно полезет в интернет)";
     let index = 0;
 
     const interval = setInterval(() => {
         if (index < message.length) {
-            //messageDiv.textContent += message[index];
             textElement.innerHTML += message[index];
             index++;
         } else {
