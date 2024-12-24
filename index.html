@@ -84,6 +84,10 @@
             // Задаем новый фон
             document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
         }
+        function changeBackground1() {
+            // Задаем новый фон
+            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
+        }
 
         function typeNewMessage(message) {
             const textElement = document.getElementById('text');
@@ -97,7 +101,7 @@
                 } else {
                     // После второго сообщения ждем 5 секунд, затем меняем фон и выводим третий текст
                     setTimeout(() => {
-                        changeBackground();
+                        changeBackground1();
                         const thirdMessage = "Начнем?";
                         index = 0; 
                         textElement.innerHTML = '';
