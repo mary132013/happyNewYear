@@ -1,147 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <style type="text/css">
-   html {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-    }
-  </style>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="unicode">
-    <title>Приём в школу иностранного языка</title> 
-    <link rel="stylesheet"  type="text/css" href="css/styles.css">
-	<script src="js/4 js.js"></script>	
-	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приём в школу иностранного языка</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <style type="text/css">
+        html {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+        body {
+            background: url('images/Фон1.png') no-repeat;
+            background-size: cover;
+            margin: 0;
+        }
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Высота экрана */
+        }
+        .heart {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: heartbeat 1s infinite;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+    </style>
+    <script src="js/4 js.js"></script>
 </head>
 
-<body background="images/Фон1.png";
-background-repeat: no-repeat;
-background-attachment:scroll;
-background-size: 100%;
-bgproperties="fixed">
-<div class="loader">
+<body>
+    <div class="loader">
         <div class="heart"></div>
     </div>
 
-    <script src="script.js"></script>
-<div style="position:fixed; top:20px; left:20px" >
-<h1><span id=r style="color:purple">Заполните анкету</span></h1>
-<HR>
-<div id="moving-element">
-</div></div></div>
-<button id="b1">Обратно</button>
+    <div style="position:fixed; top:20px; left:20px;">
+        <h1><span id="r" style="color:purple">Заполните анкету</span></h1>
+        <hr>
+        <div id="moving-element"></div>
+    </div>
 
-<div style="position:absolute; top:120px; left:20%">
-<p>Фамилия&nbsp;<input type=txt name=registr value=""><br><br>
-Имя&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=txt name=registr value=""><br><br>
-Отчество&nbsp;<input type=txt name=registr value=""><br><br>
+    <div style="position:absolute; top:120px; left:20%;">
+        <p>Фамилия&nbsp;<input type="text" name="registr" value=""><br><br>
+        Имя&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="registr" value=""><br><br>
+        Отчество&nbsp;<input type="text" name="registr" value=""><br><br>
+        </p>
+    </div>
 
-
-Возраст<br>
-<select name="select" multiple="multiple">
-<option selected>0-6</option>
-<option selected>6-12</option>
-<option selected>12-18</option>
-<option selected>18+</option>
-</select><br><br>
-
-<label for="story">E-mail</label><br>
-<textarea id="story" name="story" rows="7" cols="35"></textarea>
-
-</div>
-<div style="position:absolute; top:120px; left:50%">
-
-	<button onclick="submit()">Отправить</button>
-  
-<p><a href="https://pilot-school.ru/politika-konfidentsialnosti">Ознакомьтесь с политикой конфиденциальности</a><br>
-<input type=checkbox id=c checked>Ознакомлен(а)<br>
-</p></p>
-<input type=button value="Далее">
-
-</div>
-  <script>
-    function submit() {
-  const language = document.querySelector("#language").value;
-  const level = document.querySelector("#level").value;
-  const goals = document.querySelector("#goals").value;
-  const studyLanguage = new StudyLanguage(language, level, goals);
-
-  console.log(studyLanguage.sayHello());
-  
-}
-function traveling(){
-  const language = document.querySelector("#language").value;
-  const country = document.querySelector("#country").value;
-  const level = document.querySelector("#level").value;
-  const goals_travel = document.querySelector("#goals_travel").value;
-  const travel = new Travels(language, level, goals_travel, country);
-  console.log(travel.sayHello());
-}
-function singing(){
-  const language = document.querySelector("#language").value;
-  const name = document.querySelector("#name_song").value;
-  const artist = document.querySelector("#artist").value;
-  const level = document.querySelector("#level").value;
-  const goals = document.querySelector("#goals").value;
-  const song = new FavoriteSong(language, level, goals, name, artist);
-  console.log(song.GetSongInfo(name, artist, language));
-}
-function reading(){
-  const language = document.querySelector("#language").value;
-  const book_name = document.querySelector("#book_name").value;
-  const level = document.querySelector("#level").value;
-  const goals = document.querySelector("#goals").value;
-  const book = new FavoriteBook(language, level, goals, book_name);
-  console.log(book.getname());
-}
-document.querySelector("#goals").addEventListener("change", function(){
-  const value=this.value;
-  if (value=="Путешествовать"){
-  document.querySelector("#country").style.display="block";
-  document.querySelector("#for_country").style.display="block";
-  document.querySelector("#goals_travel").style.display="block";
-  document.querySelector("#for_goals_travel").style.display="block";
-  }
-  else if(value=="Понимать что поётся в песнях"){
-  document.querySelector("#for_name_song").style.display="block";
-  document.querySelector("#name_song").style.display="block";
-  document.querySelector("#for_artist").style.display="block";
-  document.querySelector("#artist").style.display="block";
-  }
-  else if(value=="Читать книги в оригинале"){
-  document.querySelector("#for_book_name").style.display="block";
-  document.querySelector("#book_name").style.display="block";
-  }
-  });
-  </script>
-
-<!--<div id="heart">
-  <div class="ball" id="b1" style="position: absolute; left: 1345px; top: 60px;"></div>
-  <div class="ball" id="b2" style="position: absolute; left: 1355px; top: 50px;"></div>
-  <div class="ball" id="b3" style="position: absolute; left: 1370px; top: 45px;"></div>
-  <div class="ball" id="b4" style="position: absolute; left: 1383px; top: 50px;"></div>
-  <div class="ball" id="b5" style="position: absolute; left: 1391px; top: 65px;"></div>
-  <div class="ball" id="b6" style="position: absolute; left: 1388px; top: 80px;"></div>
-  <div class="ball" id="b7" style="position: absolute; left: 1375px; top: 95px;"></div>
-  <div class="ball" id="b8" style="position: absolute; left: 1360px; top: 110px;"></div>
-  <div class="ball" id="b9" style="position: absolute; left: 1345px; top: 125px;"></div>
-  <div class="ball" id="b10" style="position: absolute; left: 1330px; top: 110px;"></div>
-  <div class="ball" id="b11" style="position: absolute; left: 1315px; top: 95px;"></div>
-  <div class="ball" id="b12" style="position: absolute; left: 1302px; top: 80px;"></div>
-  <div class="ball" id="b13" style="position: absolute; left: 1299px; top: 65px;"></div>
-  <div class="ball" id="b14" style="position: absolute; left: 1307px; top: 50px;"></div>
-  <div class="ball" id="b15" style="position: absolute; left: 1320px; top: 45px;"></div>
-  <div class="ball" id="b16" style="position: absolute; left: 1335px; top: 50px;"></div>
-</div>-->
-
+    <div style="position:absolute; top:120px; left:50%;">
+        <button onclick="submit()">Отправить</button>
+        <input type="button" value="Далее">
+    </div>
 </body>
-
-</html> 
-
-
-
-
-
-
-
+</html>
