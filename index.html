@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приём в школу иностранного языка</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <style type="text/css">
         html {
             font-family: Arial, sans-serif;
@@ -19,58 +18,27 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            overflow: hidden; /* Скрыть все элементы, кроме текста */
         }
         .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Высота экрана */
-        }
-        .heart {
-            width: 50px;
-            height: 50px;
-            background-color: purple; /* Изменено на фиолетовый цвет */
-            position: relative;
-            animation: heartbeat 1s infinite;
-            transform: rotate(315deg);
-        }
-        .heart::before,
-        .heart::after {
-            content: '';
-            width: 50px;
-            height: 50px;
-            background-color: purple; /* Изменено на фиолетовый цвет */
-            border-radius: 50%;
-            position: absolute;
-        }
-        .heart::before {
-            top: -25px;
-            left: 0;
-        }
-        .heart::after {
-            left: 25px;
-            top: 0;
-        }
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1) rotate(315deg); 
-            }
-            50% {
-                transform: scale(1.1) rotate(315deg);
-            }
+            display: none; /* Скрыть загрузчик */
         }
         #text {
             display: none; /* Скрыть текст изначально */
             font-size: 24px;
             color: purple;
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для текста */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
 
 <body>
     <div class="loader">
-        <div class="heart"></div>
+        <!-- Загрузчик (сердце) можно удалить или оставить в зависимости от ваших предпочтений -->
     </div>
 
     <div id="text"></div>
@@ -78,7 +46,6 @@
     <script>
         function delayLoad() {
             setTimeout(() => {
-                document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
                 const textElement = document.getElementById('text');
                 textElement.style.display = 'block';
                 const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
@@ -93,6 +60,7 @@
                         // После завершения вывода текста запускаем вывод нового сообщения
                         setTimeout(() => {
                             textElement.innerHTML += '<br>Так вот, пожалуй, пора тебя помучить';
+                            changeBackground(); // Меняем фон после вывода второго сообщения
                         }, 10000); // Задержка 10 секунд перед новым сообщением
                     }
                 }
@@ -101,25 +69,25 @@
                 document.querySelector('.loader').style.display = 'none';
             }, 10000); 
         }
-        window.onload = delayLoad;
 
-        let currentBackground = 0; 
-        const backgrounds = [
-            'images/photo_2024-12-24_18-27-11.jpg',
-            'images/photo_2024-12-24_18-27-16.jpg',
-            'images/photo_2024-12-24_18-27-20.jpg'
-        ];
-        
-        document.getElementById('changeBackground').addEventListener('click', function() {
-            currentBackground = (currentBackground + 1) % backgrounds.length; // Увеличиваем индекс фона
-                        document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); // Меняем фон
-        });
+        function changeBackground() {
+            const backgrounds = [
+                'images/photo_2024-12-24_18-27-11.jpg',
+                'images/photo_2024-12-24_18-27-16.jpg',
+                'images/photo_2024-12-24_18-27-20.jpg'
+            ];
+            let currentBackground = 0;
+
+            const intervalId = setInterval(() => {
+                currentBackground = (currentBackground + 1) % backgrounds.length; // Увеличиваем индекс фона
+                document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); // Меняем фон
+            }, 5000); // Меняем фон каждые 5 секунд
+
+            // Останавливаем смену фона через 30 секунд
+            setTimeout(() => clearInterval(intervalId), 30000);
+        }
+
+        window.onload = delayLoad;
     </script>
-    
-    <button id="changeBackground">Сменить фон</button>
-    <div style="position:absolute; top:120px; left:20%;">
-        <p>Фамилия&nbsp;<input type="text" name="registr" value=""><br><br></p>
-    </div>
 </body>
 </html>
-
