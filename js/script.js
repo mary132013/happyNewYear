@@ -604,21 +604,6 @@ function createSnowflake() {
     snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Позиция по горизонтали
     snowflake.style.opacity = Math.random(); // Прозрачность
     snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // Размер снежинки
-
-    document.body.appendChild(snowflake);
-
-    // Анимация падения снежинки
-    fallSnowflake(snowflake);
-}
-
-function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.className = 'snowflake';
-    snowflake.style.position = 'absolute';
-    snowflake.style.top = '0';
-    snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Позиция по горизонтали
-    snowflake.style.opacity = Math.random(); // Прозрачность
-    snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // Размер снежинки
     snowflake.textContent = '❄️'; // Добавляем символ снежинки
 
     document.body.appendChild(snowflake);
@@ -644,9 +629,7 @@ function fallSnowflake(snowflake) {
     }, fallDuration * 1000);
 }
 
-// Запуск создания снежинок
-setInterval(createSnowflake, 500); // Создаем новую снежинку каждые 500 мс
-
+// Удаляем вызов setInterval, чтобы снежинки не создавались автоматически
 
 // Запускаем функцию обратного отсчета при загрузке страницы
 window.onload = delayLoad;
