@@ -95,9 +95,9 @@
             const intervalId = setInterval(() => {
                 currentBackground = (currentBackground + 1) % backgrounds.length; // Увеличиваем индекс фона
                 document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); // Меняем фон
-            }, 5000);
+            }, 30000);
                         // Останавливаем смену фона через 30 секунд
-            setTimeout(() => clearInterval(intervalId), 30000);
+            setTimeout(() => clearInterval(intervalId), 300000);
 
             // Вызываем коллбэк для смены фона
             callback();
