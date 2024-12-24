@@ -270,15 +270,19 @@ function displayNextQuestionWithLetters() {
             const submitButton = document.createElement('button');
             submitButton.textContent = 'Отправить';
             submitButton.onclick = () => {
+                const video = document.getElementById('myVideo');
                 const userAnswer = inputField.value.trim().toLowerCase(); // Получаем ответ и приводим к нижнему регистру
                 
                 // Здесь можно добавить логику проверки нового ответа
                 if (userAnswer === "джин") { // Предположим, правильный ответ "вайт"
                    textElement.innerHTML += 'Есссс!';
+                    video.play();
                 }if (userAnswer === "сокджин") { // Предположим, правильный ответ "вайт"
                     textElement.innerHTML += 'Есссс!';
+                    video.play();
                 }}if (userAnswer === "ким сокджин") { // Предположим, правильный ответ "вайт"
                     textElement.innerHTML += 'Есссс!';
+                    video.play();
                 } else {
                    textElement.innerHTML += 'Как тааак??';
                 }
