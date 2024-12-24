@@ -1,5 +1,4 @@
-// script.js
-let currentBackground = 0; // Индекс текущего фона
+let currentBackground = 0; 
 const backgrounds = [
     'images/photo_2024-12-24_18-27-11.jpg',
     'images/photo_2024-12-24_18-27-16.jpg',
