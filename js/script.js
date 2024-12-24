@@ -172,7 +172,7 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
                     }
                 }, 500); // Измените скорость вывода текста здесь (500 мс)
             } else {                
-                document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
+                document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-44.jpg')";
                 resultDiv.textContent = "не угадала";
                 resultDiv.style.color = 'white'; // Цвет для "не угадала"
                 resultDiv.style.opacity = 1; // Плавное появление текста
@@ -241,11 +241,11 @@ function displayNextQuestion() {
             
             // Проверяем ответ
             if (userAnswer === "чонгук") {
-                document.body.style.backgroundColor = 'lightgreen'; // Меняем фон на зеленый
-                alert("Дааа, Я!");
+                document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-02.jpg')";
+                textElement.innerHTML = "Дааа, Я!";
             } else {
-                document.body.style.backgroundColor = 'lightcoral'; // Меняем фон на красный
-                alert("Как это ты меня не угадала?");
+                  document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-47.jpg')";
+                textElement.innerHTML = "Как это ты меня не угадала?";
             }
 
             // Здесь можно добавить логику обработки ответа, если нужно
