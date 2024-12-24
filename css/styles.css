@@ -1,115 +1,20 @@
-h1 {
-  color: #4B0082;
-  font-size: 24px;
+html {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
 }
 
-h2 {
-  color: #4B0082;
-  text-align: center;
-  font-size: 18px;
-}
-
-p {
-  color: #4B0082;
-  line-height: 1.5;
-}
-
-a {
-  color: #623FE9;
-  text-decoration: none;
-}
-
-a:hover {
-  color: red;
-  text-decoration: underline;
-}
-
-a:focus {
-  color: purple;
-  text-decoration: underline;
-}
-ul li{
-	list-style-type:none;
-	display:inline
-	}
-	
-li a{
-	display:block;
-	float:top;
-	padding:4px 10px;
-	border: 2px double purple;
-	background:#D682F5
-	}
-	
-li  a{
-	text-decoration:none;
-	color:#fff
-	}
-	
-li a:hover{
-	text-decoration:none;
-	color:#560C70;
-	padding:7px 14px;
-	top:-3px
-	}
-	
-option:first-child {
-  color: #8A2BE2;
-  font-weight: bold;
-}
-
-option:nth-child(2n){
-background:#9400D3;
-color:white
-}
-
-
-.brd {
-    border: 4px double purple;
-    background: #D67CFC;
-    padding: 10px; 
-   }
 body {
+    background: url('images/photo_2024-12-24_18-27-11.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    margin: 0;
+    flex-direction: column;
+    /* overflow: hidden; */
 }
 
-.loader {
-    position: relative;
-}
-
-.heart {
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    position: relative;
-    transform: rotate(-45deg);
-    animation: heartbeat 1s infinite;
-}
-
-.heart::before,
-.heart::after {
-    content: '';
-    width: 50px;
-    height: 50px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-}
-
-.heart::before {
-    top: -25px;
-    left: 0;
-}
-
-.heart::after {
-    left: 25px;
-    top: 0;
-}
 .snowflake {
     position: absolute;
     top: 0;
@@ -122,11 +27,29 @@ body {
     font-size: 20px; /* Размер шрифта по умолчанию */
 }
 
+.loader {
+    display: block;
+    font-size: 50px;
+    color: purple;
+    animation: heartbeat 1s infinite; 
+}
+
 @keyframes heartbeat {
     0%, 100% {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.1);
+        transform: scale(1.2);
     }
+}
+
+#text {
+    display: none;
+    font-size: 24px;
+    color: purple;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
