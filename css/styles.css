@@ -110,6 +110,17 @@ body {
     left: 25px;
     top: 0;
 }
+.snowflake {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: Arial, sans-serif;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 20px; /* Размер шрифта по умолчанию */
+}
 
 @keyframes heartbeat {
     0%, 100% {
