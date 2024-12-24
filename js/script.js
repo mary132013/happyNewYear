@@ -142,7 +142,14 @@ function changeBackground2() {
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
         optionDiv.textContent = option;
-        
+        optionDiv.onclick = () => {
+            // Здесь вы можете добавить любое действие, которое хотите выполнить при нажатии
+            alert(Вы выбрали: ${option});
+            // Или выполните другое действие, например:
+            // console.log(Вы выбрали: ${option});
+            // Или можете вызвать другую функцию
+            // someFunction(option);
+        };
         optionsDiv.appendChild(optionDiv);
     });
 
