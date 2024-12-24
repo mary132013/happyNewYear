@@ -215,7 +215,6 @@ function displayNextQuestion() {
     const textElement = document.getElementById('text');   
     textElement.innerHTML = "Ладненько, дальше";
 
-     textElement.innerHTML = '';   
     // Через 3 секунды выводим следующий вопрос
     setTimeout(() => {
         textElement.innerHTML = "Кто самый младший? (нет, на этот раз вариантов не будет)";
@@ -238,13 +237,13 @@ function displayNextQuestion() {
                 textElement.innerHTML = "Дааа, Я!";
                 inputField.style.display = 'none'; // Скрываем текстовое поле
                 submitButton.style.display = 'none'; // Скрываем кнопку
-                displayNextQuestionWithLetters(); // Запускаем следующую функцию
+                setTimeout(displayNextQuestionWithLetters, 2000);
             } else {
                 document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-47.jpg')";
                 textElement.innerHTML = "Как это ты меня не угадала?";                
                 inputField.style.display = 'none'; // Скрываем текстовое поле
                 submitButton.style.display = 'none'; // Скрываем кнопку
-                displayNextQuestionWithLetters(); // Запускаем следующую функцию
+                setTimeout(displayNextQuestionWithLetters, 2000);
             }
         };
         document.body.appendChild(submitButton);
@@ -274,20 +273,29 @@ function displayNextQuestionWithLetters() {
             // Кнопка для отправки ответа на новый вопрос
             const submitButton = document.createElement('button');
             submitButton.textContent = 'Отправить';
+            document.body.appendChild(submitButton);
+
+            // Обработчик клика для кнопки
             submitButton.onclick = () => {
                 const userAnswer = inputField.value.trim().toLowerCase(); // Получаем ответ и приводим к нижнему регистру
-            
-                if (userAnswer === "джин" || userAnswer === "сокджин" || userAnswer === "ким сокджин") { 
-                    textElement.innerHTML = 'Есссс!';
-                    document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";
-                    displayAmbidextrousQuestion(); // Переход к следующему вопросу
-                } else {
-                    textElement.innerHTML = 'В смысле не я??\n야야야야!!!';                    
-                    document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";                    
-                    displayAmbidextrousQuestion(); // Переход к следующему вопросу
-                }
+                
+                // Скрываем кнопку и поле ввода перед проверкой ответа
+                inputField.style.display = 'none';
+                submitButton.style.display = 'none';
+
+                // Проверяем ответ через 2 секунды
+                setTimeout(() => {
+                    if (userAnswer === "джин" || userAnswer === "сокджин" || userAnswer === "ким сокджин") { 
+                        textElement.innerHTML = 'Есссс!';
+                        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";
+                        displayAmbidextrousQuestion(); // Переход к следующему вопросу
+                    } else {
+                        textElement.innerHTML = 'В смысле не я??\n야야야야!!!';                    
+                        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";                    
+                        displayAmbidextrousQuestion(); // Переход к следующему вопросу
+                    }
+                }, 2000); // Задержка в 2 секунды перед проверкой ответа
             };
-            document.body.appendChild(submitButton);
         }
     };
 
@@ -312,7 +320,7 @@ function displayAmbidextrousQuestion() {
             answers.forEach(answer => {
                 const answerButton = document.createElement('button');
                 answerButton.textContent = answer;
-                answerButton.onclick = () => checkAmbidextrousAnswer(answer);
+                answerButton.onclick = () => checkAmbidextrousAnswer(answer, answers);
                 document.body.appendChild(answerButton);
             });
         }
@@ -321,15 +329,25 @@ function displayAmbidextrousQuestion() {
     displayLetters();
 }
 
-function checkAmbidextrousAnswer(answer) {
+function checkAmbidextrousAnswer(answer, answers) {
     const textElement = document.getElementById('text');    
+    // Скрываем все кнопки перед проверкой ответа
+    answers.forEach(answer => {
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.style.display = 'none'); // Скрываем все кнопки
+    });
+
     if (answer === "Тэхен") {
         textElement.innerHTML = 'Правильно!';
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-22.jpg')";
-        displayHopeWorldQuestion(); // Запускаем следующий вопрос
     } else {
         textElement.innerHTML = 'Не туда нажала что ли?';
     }
+
+    // Запускаем следующий вопрос через 2 секунды
+    setTimeout(() => {
+        displayHopeWorldQuestion(); // Запускаем следующий вопрос
+    }, 2000);
 }
 
 function displayHopeWorldQuestion() {
@@ -350,7 +368,7 @@ function displayHopeWorldQuestion() {
             answers.forEach(answer => {
                 const answerButton = document.createElement('button');
                 answerButton.textContent = answer;
-                answerButton.onclick = () => checkHopeWorldAnswer(answer);
+                answerButton.onclick = () => checkHopeWorldAnswer(answer, answers);
                 document.body.appendChild(answerButton);
             });
         }
@@ -359,17 +377,28 @@ function displayHopeWorldQuestion() {
     displayLetters();
 }
 
-function checkHopeWorldAnswer(answer) {
+function checkHopeWorldAnswer(answer, answers) {
     const textElement = document.getElementById('text');    
+    // Скрываем все кнопки перед проверкой ответа
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.style.display = 'none'); // Скрываем все кнопки
+
     if (answer === "Хосок") {
         textElement.innerHTML = 'Угадала))\n I`m your hope, you`re my hope, i`m jhope!';
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-20.jpg')";
         
-        // Запускаем следующий вопрос о лидере группы
-        displayLeaderQuestion();
+        // Запускаем следующий вопрос через 2 секунды
+        setTimeout(() => {
+            displayLeaderQuestion(); // Запускаем следующий вопрос о лидере группы
+        }, 2000);
     } else {
         textElement.innerHTML = 'Да я это, я!';        
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-20.jpg')";
+        
+        // Запускаем следующий вопрос через 2 секунды
+        setTimeout(() => {
+            displayLeaderQuestion(); // Запускаем следующий вопрос о лидере группы
+        }, 2000);
     }
 }
 
@@ -402,17 +431,29 @@ function displayLeaderQuestion() {
 
 function checkLeaderAnswer(answer) {
     const textElement = document.getElementById('text');    
+    // Скрываем все кнопки перед проверкой ответа
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => button.style.display = 'none'); // Скрываем все кнопки
+
     if (answer === "Намджун") {
         textElement.innerHTML = 'Love yourself: Speak yourself!';
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-17.jpg')";
         
-        // Запускаем следующий вопрос о псевдониме Юнги
-        displayYungiAliasQuestion();
+        // Запускаем следующий вопрос о псевдониме Юнги через 2 секунды
+        setTimeout(() => {
+            displayYungiAliasQuestion(); // Запускаем следующий вопрос
+        }, 2000);
     } else {
         textElement.innerHTML = 'Не правда...';        
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-17.jpg')";
+        
+        // Запускаем следующий вопрос о псевдониме Юнги через 2 секунды
+        setTimeout(() => {
+            displayYungiAliasQuestion(); // Запускаем следующий вопрос
+        }, 2000);
     }
 }
+
 
 function displayYungiAliasQuestion() {
     const textElement = document.getElementById('text');    
@@ -443,14 +484,186 @@ function displayYungiAliasQuestion() {
 
 function checkYungiAliasAnswer(answer) {
     const textElement = document.getElementById('text');    
+    const buttons = document.querySelectorAll('button');
+    
+    // Скрываем все кнопки перед проверкой ответа
+    buttons.forEach(button => button.style.display = 'none');
+
     if (answer === "AgustD") {
         textElement.innerHTML = '다 괜찮아질 거야!';
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-25.jpg')";
+        
+        // Запускаем следующий вопрос через 2 секунды
+        setTimeout(() => {
+            displayGuessWhoQuestion(); // Запускаем следующий вопрос
+        }, 2000);
     } else {
         textElement.innerHTML = 'Прочитай Suga наоборот.. гений..';        
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-25.jpg')";
+        
+        // Запускаем следующий вопрос через 2 секунды
+        setTimeout(() => {
+            displayGuessWhoQuestion(); // Запускаем следующий вопрос
+        }, 2000);
     }
 }
+
+function displayGuessWhoQuestion() {
+    const textElement = document.getElementById('text');   
+    
+    document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-07.jpg')";
+    textElement.innerHTML = 'Угадай кто на фото';
+    
+    // Создаем текстовое поле для ввода ответа
+    const inputField = document.createElement('input');
+    inputField.type = 'text';
+    inputField.placeholder = 'Введите имя...';
+    document.body.appendChild(inputField);
+
+    // Создаем кнопку для проверки ответа
+    const checkButton = document.createElement('button');
+    checkButton.textContent = 'Проверить';
+    checkButton.onclick = () => checkGuessWhoAnswer(inputField.value, inputField, checkButton);
+    document.body.appendChild(checkButton);
+}
+
+function checkGuessWhoAnswer(guess, inputField, checkButton) {
+    const textElement = document.getElementById('text');    
+    if (guess.toLowerCase() === "чимин") {
+        textElement.innerHTML = 'Да, это наш дорогой Чимин!';        
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-12.jpg')";
+        
+        // Скрываем поле ввода и кнопку
+        inputField.style.display = 'none';
+        checkButton.style.display = 'none';
+
+        // Запускаем функцию для последнего вопроса через 2 секунды
+        setTimeout(displayFinalQuestion, 2000);
+    } else {
+        textElement.innerHTML = 'Неа';
+    }
+}
+
+function displayFinalQuestion() {
+    const textElement = document.getElementById('text');   
+    textElement.innerHTML = ''; // Очищаем текст перед выводом
+
+    const finalQuestionText = "А теперь последний вопрос";
+    let index = 0;
+
+    // Функция для вывода текста по буквам
+    const displayLetters = () => {
+        if (index < finalQuestionText.length) {
+            textElement.innerHTML += finalQuestionText[index]; // Добавляем букву к тексту
+            index++;
+            setTimeout(displayLetters, 200); // Задержка между буквами
+        } else {
+            // После завершения показа текста, выводим следующий текст через 2 секунды
+            setTimeout(() => {
+                textElement.innerHTML = "Что я хочу тебе сейчас сказать?";
+                displayFinalAnswers(); // Запускаем вывод вариантов ответов
+            }, 2000);
+        }
+    };
+
+    displayLetters();
+}
+
+function displayFinalAnswers() {
+    const answers = ["i red you", "i blue you", "i purple you"];
+    answers.forEach(answer => {
+        const answerButton = document.createElement('button');
+        answerButton.textContent = answer;
+        answerButton.onclick = () => checkFinalAnswer(answer);
+        document.body.appendChild(answerButton);
+    });
+}
+
+function checkFinalAnswer(answer) {
+    const textElement = document.getElementById('text');    
+    if (answer === "i purple you") {
+        textElement.innerHTML = 'Правильно! Это именно то, что я хотел сказать!';
+        createSnowflakes(); // Запускаем функцию для создания снежинок
+    } else {
+        textElement.innerHTML = 'Неправильно! Попробуй еще раз.';
+    }
+}
+
+function createSnowflakes() {
+    const snowflakeCount = 50; // Количество снежинок
+    for (let i = 0; i < snowflakeCount; i++) {
+        createSnowflake();
+    }
+}
+
+function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.className = 'snowflake';
+    snowflake.style.position = 'absolute';
+    snowflake.style.top = '0';
+    snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Позиция по горизонтали
+    snowflake.style.opacity = Math.random(); // Прозрачность
+    snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // Размер снежинки
+
+    document.body.appendChild(snowflake);
+
+    // Анимация падения снежинки
+    fallSnowflake(snowflake);
+}
+
+function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.className = 'snowflake';
+    snowflake.style.position = 'absolute';
+    snowflake.style.top = '0';
+    snowflake.style.left = Math.random() * window.innerWidth + 'px'; // Позиция по горизонтали
+    snowflake.style.opacity = Math.random(); // Прозрачность
+    snowflake.style.fontSize = Math.random() * 10 + 10 + 'px'; // Размер снежинки
+    snowflake.textContent = '❄️'; // Добавляем символ снежинки
+
+    document.body.appendChild(snowflake);
+
+    // Анимация падения снежинки
+    fallSnowflake(snowflake);
+}
+
+function fallSnowflake(snowflake) {
+    const fallDuration = Math.random() * 3 + 2; // Длительность падения
+    snowflake.animate([
+        { transform: 'translateY(0)' },
+        { transform: 'translateY(' + window.innerHeight + 'px)' }
+    ], {
+        duration: fallDuration * 1000,
+        easing: 'linear',
+        fill: 'forwards'
+    });
+
+    // Удаляем снежинку после завершения анимации
+    setTimeout(() => {
+        snowflake.remove();
+    }, fallDuration * 1000);
+}
+
+// CSS для снежинок
+const style = document.createElement('style');
+style.innerHTML = 
+    .snowflake {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-family: Arial, sans-serif;
+        pointer-events: none;
+        z-index: 9999;
+        font-size: 20px; /* Размер шрифта по умолчанию */
+    }
+;
+document.head.appendChild(style);
+
+// Запуск создания снежинок
+setInterval(createSnowflake, 500); // Создаем новую снежинку каждые 500 мс
+
 
 // Запускаем функцию обратного отсчета при загрузке страницы
 window.onload = delayLoad;
