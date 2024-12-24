@@ -644,23 +644,6 @@ function fallSnowflake(snowflake) {
     }, fallDuration * 1000);
 }
 
-// CSS для снежинок
-const style = document.createElement('style');
-style.innerHTML = 
-    .snowflake {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        color: white;
-        font-family: Arial, sans-serif;
-        pointer-events: none;
-        z-index: 9999;
-        font-size: 20px; /* Размер шрифта по умолчанию */
-    }
-;
-document.head.appendChild(style);
-
 // Запуск создания снежинок
 setInterval(createSnowflake, 500); // Создаем новую снежинку каждые 500 мс
 
