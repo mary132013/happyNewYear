@@ -11,9 +11,14 @@
             font-size: 16px;
         }
         body {
-            background: url('images/Фон1.png') no-repeat;
+            background: url('images/Фон1.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
         .loader {
             display: flex;
@@ -54,14 +59,56 @@
                 transform: scale(1.1);
             }
         }
+        #text {
+            display: none; /* Скрыть текст изначально */
+            font-size: 24px;
+            color: purple;
+            text-align: center;
+        }
     </style>
-    <script src="js/4 js.js"></script>
 </head>
 
 <body>
     <div class="loader">
         <div class="heart"></div>
     </div>
+
+    <div id="text"></div>
+
+    <script>
+        // Функция для задержки загрузки
+        function delayLoad() {
+            // После 20 секунд
+            setTimeout(() => {
+                // Меняем фон
+                document.body.style.backgroundImage = "url('images/Фон2.png')";
+                
+                // Показываем текст
+                const textElement = document.getElementById('text');
+                textElement.style.display = 'block';
+                
+                // Печатаем текст по букве
+                const message = "Я решила, что давно не проводила тестов";
+                let index = 0;
+
+                function type() {
+                    if (index < message.length) {
+                        textElement.innerHTML += message.charAt(index);
+                        index++;
+                        setTimeout(type, 100); // Задержка между буквами
+                    }
+                }
+
+                type();
+                
+                // Убираем загрузчик
+                document.querySelector('.loader').style.display = 'none';
+            }, 20000); // 20 секунд
+        }
+
+        // Запускаем задержку загрузки при загрузке страницы
+        window.onload = delayLoad;
+    </script>
 
     <div style="position:fixed; top:20px; left:20px;">
         <h1><span id="r" style="color:purple">Заполните анкету</span></h1>
