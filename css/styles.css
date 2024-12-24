@@ -53,3 +53,59 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+/* Стили для текстового поля */
+input[type="text"],
+.input-field {
+    width: 300px; /* Ширина поля ввода */
+    padding: 10px; /* Отступ внутри поля */
+    margin: 20px 0; /* Отступ сверху и снизу */
+    border: 2px solid #9b59b6; /* Сиреневая граница */
+    border-radius: 5px; /* Закругление углов */
+    font-size: 16px; /* Размер шрифта */
+    transition: border-color 0.3s; /* Плавный переход для изменения цвета границы */
+}
+
+/* Эффект при фокусе на поле ввода */
+input[type="text"]:focus,
+.input-field:focus {
+    border-color: #8e44ad; /* Темно-сиреневая граница при фокусе */
+    outline: none; /* Убираем стандартное обрамление */
+}
+
+/* Стили для кнопки */
+button,
+.check-button,
+.answer-button {
+    background-color: #9b59b6; /* Сиреневый цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Закругление углов */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Курсор при наведении */
+    transition: background-color 0.3s, transform 0.3s; /* Плавный переход для цвета фона и эффекта нажатия */
+}
+
+/* Эффект при наведении на кнопку */
+button:hover,
+.check-button:hover,
+.answer-button:hover {
+    background-color: #8e44ad; /* Темно-сиреневый цвет фона при наведении */
+}
+
+/* Эффект при нажатии на кнопку */
+button:active,
+.check-button:active,
+.answer-button:active {
+    transform: scale(0.95); /* Уменьшение кнопки при нажатии */
+}
+
+/* Дополнительные стили для кнопок ответов */
+.answer-button {
+    margin: 10px; /* Отступ вокруг кнопки */
+}
+
+/* Эффект увеличения кнопки ответов при наведении */
+.answer-button:hover {
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+}
