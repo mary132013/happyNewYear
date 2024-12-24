@@ -291,7 +291,7 @@ function displayNextQuestionWithLetters() {
                         displayAmbidextrousQuestion(); // Переход к следующему вопросу
                     } else {
                         textElement.innerHTML = 'В смысле не я??\n야야야야!!!';                    
-                        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";                    
+                        document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-27.jpg')";                    
                         displayAmbidextrousQuestion(); // Переход к следующему вопросу
                     }
                 }, 2000); // Задержка в 2 секунды перед проверкой ответа
