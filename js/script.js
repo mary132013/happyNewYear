@@ -186,6 +186,7 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
     textElement.appendChild(optionsDiv);
 }
 function displayDebutSongMessage() {
+     textElement.innerHTML = '';   
     const messageDiv = document.createElement('div');
     messageDiv.className = 'debut-message'; // Класс для стилизации сообщения
     document.body.appendChild(messageDiv);
@@ -195,7 +196,8 @@ function displayDebutSongMessage() {
 
     const interval = setInterval(() => {
         if (index < message.length) {
-            messageDiv.textContent += message[index];
+            //messageDiv.textContent += message[index];
+            textElement.innerHTML += message[index];
             index++;
         } else {
             clearInterval(interval);
@@ -211,16 +213,19 @@ function displayNextQuestion() {
     const nextDiv = document.createElement('div');
     nextDiv.className = 'next-question'; // Класс для стилизации следующего вопроса
     document.body.appendChild(nextDiv);
-    
+    textElement.innerHTML = '';   
     // Выводим текст "Ладненько, дальше"
-    nextDiv.textContent = "Ладненько, дальше";
-
+    //nextDiv.textContent = "Ладненько, дальше";
+    textElement.innerHTML = "Ладненько, дальше";
     // Через 2 секунды выводим следующий вопрос
     setTimeout(() => {
+        textElement.innerHTML = '';   
         const questionDiv = document.createElement('div');
-        questionDiv.className = 'question-message'; // Класс для стилизации вопроса
-        questionDiv.textContent = "Кто самый младший? (нет, на этот раз вариантов не будет)";
-        document.body.appendChild(questionDiv);
+        
+        textElement.innerHTML += message[index];
+        //questionDiv.className = 'question-message'; // Класс для стилизации вопроса
+        //questionDiv.textContent = "Кто самый младший? (нет, на этот раз вариантов не будет)";
+        //document.body.appendChild(questionDiv);
 
         // Создаем текстовое поле
         const inputField = document.createElement('input');
@@ -247,7 +252,7 @@ function displayNextQuestion() {
         };
         document.body.appendChild(submitButton);
         
-    }, 2000); // Задержка 2 секунды перед выводом вопроса и текстового поля
+    }, 3000); // Задержка 2 секунды перед выводом вопроса и текстового поля
 }
 
 // Запускаем функцию обратного отсчета при загрузке страницы
