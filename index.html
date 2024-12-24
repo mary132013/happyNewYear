@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-    <div class="loader">💜</div>
+    <div class="loader">💜</div> <!-- Сердце как загрузчик -->
     <div id="text"></div>
     <script>
         function delayLoad() {
@@ -56,7 +56,8 @@
                 textElement.style.display = 'block';
                 const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
                 let index = 0;
-                changeBackground();
+
+                // Выводим первое сообщение
                 function type() {
                     if (index < message.length) {
                         textElement.innerHTML += message.charAt(index);
@@ -64,6 +65,9 @@
                         setTimeout(type, 100); 
                     } else {            
                         setTimeout(() => {
+                            // Смена фона перед выводом нового сообщения
+                            changeBackground();
+                            
                             const newMessage = 'Так вот, пожалуй, пора тебя помучить';
                             index = 0; 
                             textElement.innerHTML = '';
@@ -77,7 +81,7 @@
         }
 
         function changeBackground() {
-              // Задаем новый фон
+            // Задаем новый фон
             document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
         }
 
@@ -90,6 +94,54 @@
                     textElement.innerHTML += message.charAt(index);
                     index++;
                     setTimeout(type, 100); // Задержка между буквами
+                } else {
+                    // После второго сообщения ждем 5 секунд, затем меняем фон и выводим третий текст
+                    setTimeout(() => {
+                        changeBackground();
+                        const thirdMessage = "Начнем?";
+                        index = 0; 
+                        textElement.innerHTML = '';
+                        typeThirdMessage(thirdMessage);
+                    }, 5000); // Задержка перед сменой фона
+                }
+            }
+            type();
+        }
+
+        function typeThirdMessage(message) {
+            const textElement = document.getElementById('text');
+            let index = 0;
+
+            function type() {
+                if (index < message.length) {
+                    textElement.innerHTML += message.charAt(index);
+                    index++;
+                    setTimeout(type, 100); // Задержка между буквами
+                } else {
+                    // После третьего сообщения ждем 5 секунд и выводим четвертое сообщение
+                    setTimeout(() => {
+                        const fourthMessage = "Это был не вопрос";
+                        index = 0; 
+                        textElement.innerHTML = '';
+                        typeFourthMessage(fourthMessage);
+                    }, 5000); // Задержка перед выводом следующего сообщения
+                }
+            }
+            type();
+        }
+
+        function typeFourthMessage(message) {
+            const textElement = document.getElementById('text');
+            let index = 0;
+
+            function type() {
+                if (index < message.length) {
+                    textElement.innerHTML += message.charAt(index);
+                    index++;
+                    setTimeout(type, 100); // Задержка между буквами
+                } else {
+                    // Смена фона после четвертого сообщения
+                    setTimeout(changeBackground, 5000); // Задержка перед сменой фона
                 }
             }
             type();
