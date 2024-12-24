@@ -23,7 +23,7 @@
         .loader {
             display: block; /* Сделать загрузчик видимым */
             font-size: 50px; /* Размер сердца */
-            color: red; /* Цвет сердца */
+            color: purple; /* Цвет сердца изменен на фиолетовый */
             animation: heartbeat 1s infinite; /* Анимация пульсации */
         }
         @keyframes heartbeat {
@@ -66,20 +66,24 @@
                         index++;
                         setTimeout(type, 100); // Задержка между буквами
                     } else {
-                        // После завершения вывода текста запускаем вывод нового сообщения
-                        setTimeout(() => {
-                            textElement.innerHTML += '<br>Так вот, пожалуй, пора тебя помучить';
-                            changeBackground(); // Меняем фон после вывода второго сообщения
-                        }, 10000); // Задержка 10 секунд перед новым сообщением
+                        // После завершения вывода первого текста меняем фон и запускаем вывод нового сообщения
+                        changeBackground(() => {
+                            setTimeout(() => {
+                                const newMessage = 'Так вот, пожалуй, пора тебя помучить';
+                                index = 0; // Сбрасываем индекс для нового сообщения
+                                textElement.innerHTML = ''; // Очищаем текст перед новым выводом
+                                typeNewMessage(newMessage); // Запускаем вывод нового сообщения
+                            }, 1000); // Задержка перед новым сообщением
+                        });
                     }
                 }
-                
+
                 type();
                 document.querySelector('.loader').style.display = 'none'; // Скрыть сердце после загрузки текста
             }, 10000); 
         }
 
-        function changeBackground() {
+        function changeBackground(callback) {
             const backgrounds = [
                 'images/photo_2024-12-24_18-27-11.jpg',
                 'images/photo_2024-12-24_18-27-16.jpg',
@@ -87,16 +91,35 @@
             ];
             let currentBackground = 0;
 
+            // Меняем фон каждые 5 секунд
             const intervalId = setInterval(() => {
                 currentBackground = (currentBackground + 1) % backgrounds.length; // Увеличиваем индекс фона
                 document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); // Меняем фон
-            }, 5000); // Меняем фон каждые 5 секунд
-
-            // Останавливаем смену фона через 30 секунд
+            }, 5000);
+                        // Останавливаем смену фона через 30 секунд
             setTimeout(() => clearInterval(intervalId), 30000);
+
+            // Вызываем коллбэк для смены фона
+            callback();
+        }
+
+        function typeNewMessage(message) {
+            const textElement = document.getElementById('text');
+            let index = 0;
+
+            function type() {
+                if (index < message.length) {
+                    textElement.innerHTML += message.charAt(index);
+                    index++;
+                    setTimeout(type, 100); // Задержка между буквами
+                }
+            }
+
+            type();
         }
 
         window.onload = delayLoad;
     </script>
 </body>
 </html>
+
