@@ -225,11 +225,13 @@ function displayNextQuestion() {
         const inputField = document.createElement('input');
         inputField.type = 'text';
         inputField.placeholder = 'Введите ваш ответ...';
+        inputField.className = 'styled-input'; // Добавляем класс для стилей
         document.body.appendChild(inputField);
         
         // Кнопка для отправки ответа
         const submitButton = document.createElement('button');
         submitButton.textContent = 'Отправить';
+        submitButton.className = 'styled-button'; // Добавляем класс для стилей
         submitButton.onclick = () => {
             const userAnswer = inputField.value.trim().toLowerCase(); // Получаем ответ и приводим к нижнему регистру
             
@@ -253,6 +255,7 @@ function displayNextQuestion() {
     }, 3000); // Задержка 3 секунды перед выводом вопроса и текстового поля
 }
 
+
 function displayNextQuestionWithLetters() {
     const textElement = document.getElementById('text');    
     textElement.innerHTML = '';   
@@ -270,11 +273,13 @@ function displayNextQuestionWithLetters() {
             const inputField = document.createElement('input');
             inputField.type = 'text';
             inputField.placeholder = 'Введите ваш ответ...';
+            inputField.className = 'styled-input'; // Добавляем класс для стилей
             document.body.appendChild(inputField);
             
             // Кнопка для отправки ответа на новый вопрос
             const submitButton = document.createElement('button');
             submitButton.textContent = 'Отправить';
+            submitButton.className = 'styled-button'; // Добавляем класс для стилей
             document.body.appendChild(submitButton);
 
             // Обработчик клика для кнопки
@@ -290,15 +295,15 @@ function displayNextQuestionWithLetters() {
                     if (userAnswer === "джин" || userAnswer === "сокджин" || userAnswer === "ким сокджин") { 
                         textElement.innerHTML = 'Есссс!';
                         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";
-                          setTimeout(() => {
-            displayAmbidextrousQuestion();
-        }, 2000); // Переход к следующему вопросу
+                        setTimeout(() => {
+                            displayAmbidextrousQuestion();
+                        }, 2000); // Переход к следующему вопросу
                     } else {
                         textElement.innerHTML = 'В смысле не я??\n야야야야!!!';                    
                         document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-27.jpg')";                    
-                        setTimeout(() => {
-            displayAmbidextrousQuestion();
-        }, 2000); // Переход к следующему вопросу
+                        setTimeout(() => {   
+                            displayAmbidextrousQuestion();
+                        }, 2000); // Переход к следующему вопросу
                     }
                 }, 2000); // Задержка в 2 секунды перед проверкой ответа
             };
@@ -307,7 +312,6 @@ function displayNextQuestionWithLetters() {
 
     displayLetters();
 }
-
 function displayAmbidextrousQuestion() {
     const textElement = document.getElementById('text');    
     textElement.innerHTML = '';   
@@ -326,6 +330,7 @@ function displayAmbidextrousQuestion() {
             answers.forEach(answer => {
                 const answerButton = document.createElement('button');
                 answerButton.textContent = answer;
+                answerButton.className = 'answer-button'; // Добавляем класс для стилей
                 answerButton.onclick = () => checkAmbidextrousAnswer(answer, answers);
                 document.body.appendChild(answerButton);
             });
@@ -347,7 +352,8 @@ function checkAmbidextrousAnswer(answer, answers) {
         textElement.innerHTML = 'Правильно!';
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-22.jpg')";
     } else {
-        textElement.innerHTML = 'Не туда нажала что ли?';
+        textElement.innerHTML = 'Не туда нажала что ли?';        
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-22.jpg')";
     }
 
     // Запускаем следующий вопрос через 2 секунды
@@ -374,6 +380,7 @@ function displayHopeWorldQuestion() {
             answers.forEach(answer => {
                 const answerButton = document.createElement('button');
                 answerButton.textContent = answer;
+                answerButton.className = 'answer-button'; // Добавляем класс для стилей
                 answerButton.onclick = () => checkHopeWorldAnswer(answer, answers);
                 document.body.appendChild(answerButton);
             });
@@ -382,6 +389,7 @@ function displayHopeWorldQuestion() {
 
     displayLetters();
 }
+
 
 function checkHopeWorldAnswer(answer, answers) {
     const textElement = document.getElementById('text');    
@@ -398,7 +406,7 @@ function checkHopeWorldAnswer(answer, answers) {
             displayLeaderQuestion(); // Запускаем следующий вопрос о лидере группы
         }, 2000);
     } else {
-        textElement.innerHTML = 'Да я это, я!';        
+        textElement.innerHTML = 'Упс..';        
         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-20.jpg')";
         
         // Запускаем следующий вопрос через 2 секунды
@@ -426,6 +434,7 @@ function displayLeaderQuestion() {
             answers.forEach(answer => {
                 const answerButton = document.createElement('button');
                 answerButton.textContent = answer;
+                answerButton.className = 'answer-button'; // Добавляем класс для стилей
                 answerButton.onclick = () => checkLeaderAnswer(answer);
                 document.body.appendChild(answerButton);
             });
@@ -434,6 +443,7 @@ function displayLeaderQuestion() {
 
     displayLetters();
 }
+
 
 function checkLeaderAnswer(answer) {
     const textElement = document.getElementById('text');    
@@ -479,6 +489,7 @@ function displayYungiAliasQuestion() {
             answers.forEach(answer => {
                 const answerButton = document.createElement('button');
                 answerButton.textContent = answer;
+                answerButton.className = 'answer-button'; // Добавляем класс для стилей
                 answerButton.onclick = () => checkYungiAliasAnswer(answer);
                 document.body.appendChild(answerButton);
             });
@@ -487,6 +498,7 @@ function displayYungiAliasQuestion() {
 
     displayLetters();
 }
+
 
 function checkYungiAliasAnswer(answer) {
     const textElement = document.getElementById('text');    
@@ -524,14 +536,17 @@ function displayGuessWhoQuestion() {
     const inputField = document.createElement('input');
     inputField.type = 'text';
     inputField.placeholder = 'Введите имя...';
+    inputField.className = 'input-field'; // Добавляем класс для стилей
     document.body.appendChild(inputField);
 
     // Создаем кнопку для проверки ответа
     const checkButton = document.createElement('button');
     checkButton.textContent = 'Проверить';
+    checkButton.className = 'check-button'; // Добавляем класс для стилей
     checkButton.onclick = () => checkGuessWhoAnswer(inputField.value, inputField, checkButton);
     document.body.appendChild(checkButton);
 }
+
 
 function checkGuessWhoAnswer(guess, inputField, checkButton) {
     const textElement = document.getElementById('text');    
@@ -580,32 +595,33 @@ function displayFinalAnswers() {
     answers.forEach(answer => {
         const answerButton = document.createElement('button');
         answerButton.textContent = answer;
+        answerButton.className = 'answer-button'; // Добавляем класс для стилей
         answerButton.onclick = () => checkFinalAnswer(answer);
         document.body.appendChild(answerButton);
     });
 }
 
+
 function checkFinalAnswer(answer) {
     const textElement = document.getElementById('text');    
     if (answer === "i purple you") {
-                        document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
+  document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
+         const textElement = document.getElementById('text');    
+    const buttons = document.querySelectorAll('button'); // Выбираем все кнопки на странице
+    // Скрываем кнопки
+    buttons.forEach(button => {
+        button.style.display = 'none';
+    });
         createSnowflakes(); // Запускаем функцию для создания снежинок
+    setTimeout(() => {
+       textElement.innerHTML = "А теперь напиши мне эту фраза";
+    }, 3000); // Задержка перед показом ссылки (например, 3 секунды)
     } else {
+        
+       textElement.innerHTML = "Нееет";
           document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
         createSnowflakes(); // Запускаем функцию для создания снежинок
     }
-     // Создание ссылки для загрузки PDF
-    setTimeout(() => {
-        const pdfLink = document.createElement('a'); 
-        pdfLink.href = 'images/Подарочный сертификат Wildberries.pdf'; // Укажите путь к вашему PDF-файлу
-        pdfLink.textContent = 'Скачать PDF';
-        pdfLink.style.display = 'block'; // Делаем ссылку блочным элементом
-        pdfLink.style.marginTop = '20px'; // Добавляем отступ сверху
-        pdfLink.style.fontSize = '20px'; // Увеличиваем размер шрифта
-        pdfLink.style.color = '#fff'; // Изменяем цвет текста, если нужно
-
-        document.body.appendChild(pdfLink); // Добавляем ссылку на страницу
-    }, 3000); // Задержка перед показом ссылки (например, 3 секунды)
 }
 
 function createSnowflakes() {
