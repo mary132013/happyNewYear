@@ -167,6 +167,7 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
                         resultDiv.style.opacity = 1; // Плавное появление текста
                         // Запускаем функцию для вывода следующего текста
                         setTimeout(() => {
+                             resultDiv.textContent='';
                             displayDebutSongMessage();
                         }, 1000); // Задержка перед выводом следующего текста
                     }
@@ -211,23 +212,12 @@ function displayDebutSongMessage() {
 }
 
 function displayNextQuestion() {
-     const textElement = document.getElementById('text');   
-    //const nextDiv = document.createElement('div');
-    //nextDiv.className = 'next-question'; // Класс для стилизации следующего вопроса
-    //document.body.appendChild(nextDiv);
-    textElement.innerHTML = '';   
-    // Выводим текст "Ладненько, дальше"
-    //nextDiv.textContent = "Ладненько, дальше";
+    const textElement = document.getElementById('text');   
     textElement.innerHTML = "Ладненько, дальше";
-    // Через 2 секунды выводим следующий вопрос
+
+    // Через 3 секунды выводим следующий вопрос
     setTimeout(() => {
-        textElement.innerHTML = '';   
-        const questionDiv = document.createElement('div');
-        
         textElement.innerHTML = "Кто самый младший? (нет, на этот раз вариантов не будет)";
-        //questionDiv.className = 'question-message'; // Класс для стилизации вопроса
-        //questionDiv.textContent = "Кто самый младший? (нет, на этот раз вариантов не будет)";
-        //document.body.appendChild(questionDiv);
 
         // Создаем текстовое поле
         const inputField = document.createElement('input');
@@ -245,17 +235,59 @@ function displayNextQuestion() {
             if (userAnswer === "чонгук") {
                 document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-02.jpg')";
                 textElement.innerHTML = "Дааа, Я!";
+                inputField.style.display = 'none'; // Скрываем текстовое поле
+                submitButton.style.display = 'none'; // Скрываем кнопку
+                displayNextQuestionWithLetters(); // Запускаем следующую функцию
             } else {
-                  document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-47.jpg')";
+                document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-47.jpg')";
                 textElement.innerHTML = "Как это ты меня не угадала?";
             }
-
-            // Здесь можно добавить логику обработки ответа, если нужно
         };
         document.body.appendChild(submitButton);
         
-    }, 3000); // Задержка 2 секунды перед выводом вопроса и текстового поля
+    }, 3000); // Задержка 3 секунды перед выводом вопроса и текстового поля
 }
 
+function displayNextQuestionWithLetters() {
+    const textElement = document.getElementById('text');
+    const questionText = "Кого называют Worldwide handsome?";
+    let index = 0;
+
+    // Функция для вывода текста по буквам
+    const displayLetters = () => {
+        if (index < questionText.length) {
+            textElement.innerHTML += questionText[index]; // Добавляем букву к тексту
+            index++;
+            setTimeout(displayLetters, 200); // Задержка между буквами
+        } else {
+            // После завершения показа текста, создаем новое текстовое поле
+            const inputField = document.createElement('input');
+            inputField.type = 'text';
+            inputField.placeholder = 'Введите ваш ответ...';
+            document.body.appendChild(inputField);
+            
+            // Кнопка для отправки ответа на новый вопрос
+            const submitButton = document.createElement('button');
+            submitButton.textContent = 'Отправить';
+            submitButton.onclick = () => {
+                const userAnswer = inputField.value.trim().toLowerCase(); // Получаем ответ и приводим к нижнему регистру
+                
+                // Здесь можно добавить логику проверки нового ответа
+                if (userAnswer === "джин") { // Предположим, правильный ответ "вайт"
+                   textElement.innerHTML += 'Есссс!';
+                }if (userAnswer === "сокджин") { // Предположим, правильный ответ "вайт"
+                    textElement.innerHTML += 'Есссс!';
+                }}if (userAnswer === "ким сокджин") { // Предположим, правильный ответ "вайт"
+                    textElement.innerHTML += 'Есссс!';
+                } else {
+                   textElement.innerHTML += 'Как тааак??';
+                }
+            };
+            document.body.appendChild(submitButton);
+        }
+    };
+
+    displayLetters(); // Запускаем вывод букв
+}
 // Запускаем функцию обратного отсчета при загрузке страницы
 window.onload = delayLoad;
