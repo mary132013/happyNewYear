@@ -5,68 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приём в школу иностранного языка</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <style type="text/css">
-    html {
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-    }
-    body {
-        background: url('images/photo_2024-12-24_18-27-11.jpg') no-repeat center center fixed;
-        background-size: cover;
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    .loader {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh; /* Высота экрана */
-    }
-    .heart {
-        width: 50px;
-        height: 50px;
-        background-color: red;
-        position: relative;
-        animation: heartbeat 1s infinite;
-        transform: rotate(315deg); /* Поворачиваем сердце на 45 градусов */
-    }
-    .heart::before,
-    .heart::after {
-        content: '';
-        width: 50px;
-        height: 50px;
-        background-color: red;
-        border-radius: 50%;
-        position: absolute;
-    }
-    .heart::before {
-        top: -25px;
-        left: 0;
-    }
-    .heart::after {
-        left: 25px;
-        top: 0;
-    }
-    @keyframes heartbeat {
-        0%, 100% {
-            transform: scale(1) rotate(315deg); /* Сохраняем поворот при анимации */
+    <style type="text/css">
+        html {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
         }
-        50% {
-            transform: scale(1.1) rotate(315deg);
+        body {
+            background: url('images/photo_2024-12-24_18-27-11.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-    }
-    #text {
-        display: none; /* Скрыть текст изначально */
-        font-size: 24px;
-        color: purple;
-        text-align: center;
-    }
-</style>
-
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Высота экрана */
+        }
+        .heart {
+            width: 50px;
+            height: 50px;
+            background-color: purple; /* Изменено на фиолетовый цвет */
+            position: relative;
+            animation: heartbeat 1s infinite;
+            transform: rotate(315deg);
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            background-color: purple; /* Изменено на фиолетовый цвет */
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            left: 25px;
+            top: 0;
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1) rotate(315deg); 
+            }
+            50% {
+                transform: scale(1.1) rotate(315deg);
+            }
+        }
+        #text {
+            display: none; /* Скрыть текст изначально */
+            font-size: 24px;
+            color: purple;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -78,28 +77,32 @@
 
     <script>
         function delayLoad() {
-            // После 20 секунд
             setTimeout(() => {
-                // Меняем фон
-                document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-11.jpg')";
+                document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
                 const textElement = document.getElementById('text');
                 textElement.style.display = 'block';
-                const message = "Я решила, что давно не проводила тестов";
+                const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
                 let index = 0;
+
                 function type() {
                     if (index < message.length) {
                         textElement.innerHTML += message.charAt(index);
                         index++;
                         setTimeout(type, 100); // Задержка между буквами
+                    } else {
+                        // После завершения вывода текста запускаем вывод нового сообщения
+                        setTimeout(() => {
+                            textElement.innerHTML += '<br>Так вот, пожалуй, пора тебя помучить';
+                        }, 10000); // Задержка 10 секунд перед новым сообщением
                     }
                 }
-                 type();
+                
+                type();
                 document.querySelector('.loader').style.display = 'none';
-            }, 20000); // 20 секунд
+            }, 10000); 
         }
         window.onload = delayLoad;
 
-        // Код для смены фона по нажатию кнопки
         let currentBackground = 0; 
         const backgrounds = [
             'images/photo_2024-12-24_18-27-11.jpg',
@@ -109,12 +112,14 @@
         
         document.getElementById('changeBackground').addEventListener('click', function() {
             currentBackground = (currentBackground + 1) % backgrounds.length; // Увеличиваем индекс фона
-            document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); // Меняем фон
+                        document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); // Меняем фон
         });
     </script>
-     <button id="changeBackground">Сменить фон</button>
+    
+    <button id="changeBackground">Сменить фон</button>
     <div style="position:absolute; top:120px; left:20%;">
         <p>Фамилия&nbsp;<input type="text" name="registr" value=""><br><br></p>
     </div>
 </body>
 </html>
+
