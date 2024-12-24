@@ -165,6 +165,10 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
                     } else {
                         clearInterval(interval);
                         resultDiv.style.opacity = 1; // Плавное появление текста
+                        // Запускаем функцию для вывода следующего текста
+                        setTimeout(() => {
+                            displayDebutSongMessage();
+                        }, 1000); // Задержка перед выводом следующего текста
                     }
                 }, 500); // Измените скорость вывода текста здесь (500 мс)
             } else {                
@@ -181,7 +185,70 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
     const textElement = document.getElementById('text');
     textElement.appendChild(optionsDiv);
 }
+function displayDebutSongMessage() {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'debut-message'; // Класс для стилизации сообщения
+    document.body.appendChild(messageDiv);
+    
+    const message = "Была мысль спросить про дебютную песню... но это не интересно (кто-то всё равно полезет в интернет)";
+    let index = 0;
 
+    const interval = setInterval(() => {
+        if (index < message.length) {
+            messageDiv.textContent += message[index];
+            index++;
+        } else {
+            clearInterval(interval);
+            // Через 5 секунд выводим следующее сообщение
+            setTimeout(() => {
+                displayNextQuestion();
+            }, 5000); // Задержка 5 секунд
+        }
+    }, 100); // Скорость вывода текста (100 мс)
+}
+
+function displayNextQuestion() {
+    const nextDiv = document.createElement('div');
+    nextDiv.className = 'next-question'; // Класс для стилизации следующего вопроса
+    document.body.appendChild(nextDiv);
+    
+    // Выводим текст "Ладненько, дальше"
+    nextDiv.textContent = "Ладненько, дальше";
+
+    // Через 2 секунды выводим следующий вопрос
+    setTimeout(() => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question-message'; // Класс для стилизации вопроса
+        questionDiv.textContent = "Кто самый младший? (нет, на этот раз вариантов не будет)";
+        document.body.appendChild(questionDiv);
+
+        // Создаем текстовое поле
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.placeholder = 'Введите ваш ответ...';
+        document.body.appendChild(inputField);
+        
+        // Кнопка для отправки ответа
+        const submitButton = document.createElement('button');
+        submitButton.textContent = 'Отправить';
+        submitButton.onclick = () => {
+            const userAnswer = inputField.value.trim().toLowerCase(); // Получаем ответ и приводим к нижнему регистру
+            
+            // Проверяем ответ
+            if (userAnswer === "чонгук") {
+                document.body.style.backgroundColor = 'lightgreen'; // Меняем фон на зеленый
+                alert("Дааа, Я!");
+            } else {
+                document.body.style.backgroundColor = 'lightcoral'; // Меняем фон на красный
+                alert("Как это ты меня не угадала?");
+            }
+
+            // Здесь можно добавить логику обработки ответа, если нужно
+        };
+        document.body.appendChild(submitButton);
+        
+    }, 2000); // Задержка 2 секунды перед выводом вопроса и текстового поля
+}
 
 // Запускаем функцию обратного отсчета при загрузке страницы
 window.onload = delayLoad;
