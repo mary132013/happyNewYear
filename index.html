@@ -5,67 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приём в школу иностранного языка</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <style type="text/css">
-        html {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
+   <style type="text/css">
+    html {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+    }
+    body {
+        background: url('images/photo_2024-12-24_18-27-11.jpg') no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Высота экрана */
+    }
+    .heart {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        position: relative;
+        animation: heartbeat 1s infinite;
+    }
+    .heart::before,
+    .heart::after {
+        content: '';
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+    }
+    .heart::before {
+        top: -25px;
+        left: 0;
+    }
+    .heart::after {
+        left: 25px;
+        top: 0;
+    }
+    @keyframes heartbeat {
+        0%, 100% {
+            transform: scale(1);
         }
-        body {
-            background: url('images/photo_2024-12-24_18-27-11.jpg') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        50% {
+            transform: scale(1.1);
         }
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Высота экрана */
-        }
-        .heart {
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            position: relative;
-            transform: rotate(-45deg);
-            animation: heartbeat 1s infinite;
-        }
-        .heart::before,
-        .heart::after {
-            content: '';
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            border-radius: 50%;
-            position: absolute;
-        }
-        .heart::before {
-            top: -25px;
-            left: 0;
-        }
-        .heart::after {
-            left: 25px;
-            top: 0;
-        }
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-        #text {
-            display: none; /* Скрыть текст изначально */
-            font-size: 24px;
-            color: purple;
-            text-align: center;
-        }
-    </style>
+    }
+    #text {
+        display: none; /* Скрыть текст изначально */
+        font-size: 24px;
+        color: purple;
+        text-align: center;
+    }
+</style>
+
 </head>
 
 <body>
