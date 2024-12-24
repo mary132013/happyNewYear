@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-    <div class="loader">💜</div> <!-- Сердце как загрузчик -->
+    <div class="loader">💜</div>
     <div id="text"></div>
     <script>
         function delayLoad() {
@@ -77,21 +77,8 @@
         }
 
         function changeBackground() {
-            const backgrounds = [
-                'images/photo_2024-12-24_18-27-11.jpg',
-                'images/photo_2024-12-24_18-27-16.jpg',
-                'images/photo_2024-12-24_18-27-20.jpg'
-            ];
-            let currentBackground = 0;
-
-            // Меняем фон каждые 5 секунд
-            const intervalId = setInterval(() => {
-                currentBackground = (currentBackground + 1) % backgrounds.length; 
-                document.body.style.backgroundImage = url('${backgrounds[currentBackground]}'); 
-            }, 5000); // Смена фона каждые 5 секунд
-
-            // Останавливаем смену фона через 30 секунд
-            setTimeout(() => clearInterval(intervalId), 30000);
+              // Задаем новый фон
+            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
         }
 
         function typeNewMessage(message) {
