@@ -582,10 +582,11 @@ function displayFinalAnswers() {
 function checkFinalAnswer(answer) {
     const textElement = document.getElementById('text');    
     if (answer === "i purple you") {
-        textElement.innerHTML = 'Правильно! Это именно то, что я хотел сказать!';
+                        document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
         createSnowflakes(); // Запускаем функцию для создания снежинок
     } else {
-        textElement.innerHTML = 'Неправильно! Попробуй еще раз.';
+          document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
+        createSnowflakes(); // Запускаем функцию для создания снежинок
     }
 }
 
