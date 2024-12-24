@@ -190,6 +190,8 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
 }
 function displayDebutSongMessage() {
      const textElement = document.getElementById('text');   
+     const resultDiv = document.createElement('div');
+     resultDiv.textContent='';
      textElement.innerHTML = '';   
     //const messageDiv = document.createElement('div');
     //messageDiv.className = 'debut-message'; // Класс для стилизации сообщения
@@ -616,11 +618,8 @@ function checkFinalAnswer(answer) {
     setTimeout(() => {
        textElement.innerHTML = "А теперь напиши мне эту фраза";
     }, 3000); // Задержка перед показом ссылки (например, 3 секунды)
-    } else {
-        
+    } else {        
        textElement.innerHTML = "Нееет";
-          document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
-        createSnowflakes(); // Запускаем функцию для создания снежинок
     }
 }
 
