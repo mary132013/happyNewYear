@@ -187,9 +187,9 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
 }
 function displayDebutSongMessage() {
      textElement.innerHTML = '';   
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'debut-message'; // Класс для стилизации сообщения
-    document.body.appendChild(messageDiv);
+    //const messageDiv = document.createElement('div');
+    //messageDiv.className = 'debut-message'; // Класс для стилизации сообщения
+    //document.body.appendChild(messageDiv);
     
     const message = "Была мысль спросить про дебютную песню... но это не интересно (кто-то всё равно полезет в интернет)";
     let index = 0;
@@ -222,7 +222,7 @@ function displayNextQuestion() {
         textElement.innerHTML = '';   
         const questionDiv = document.createElement('div');
         
-        textElement.innerHTML += message[index];
+        textElement.innerHTML = "Кто самый младший? (нет, на этот раз вариантов не будет)";
         //questionDiv.className = 'question-message'; // Класс для стилизации вопроса
         //questionDiv.textContent = "Кто самый младший? (нет, на этот раз вариантов не будет)";
         //document.body.appendChild(questionDiv);
