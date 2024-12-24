@@ -276,12 +276,15 @@ function displayNextQuestionWithLetters() {
                 // Здесь можно добавить логику проверки нового ответа
                 if (userAnswer === "джин") { // Предположим, правильный ответ "вайт"
                    textElement.innerHTML += 'Есссс!';
+                     video.style.display = 'block';
                     video.play();
                 }if (userAnswer === "сокджин") { // Предположим, правильный ответ "вайт"
                     textElement.innerHTML += 'Есссс!';
+                     video.style.display = 'block';
                     video.play();
                 }}if (userAnswer === "ким сокджин") { // Предположим, правильный ответ "вайт"
                     textElement.innerHTML += 'Есссс!';
+                 video.style.display = 'block';
                     video.play();
                 } else {
                    textElement.innerHTML += 'Как тааак??';
