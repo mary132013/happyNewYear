@@ -128,23 +128,23 @@
         type();   
     }
 
-    function showOptions() {
-        const optionsDiv = document.createElement('div'); 
-        optionsDiv.style.marginTop = '20px';
-        const options = ["12 июня 2011", "11 июня 2014", "14 июня 2012", "13 июня 2013"];
-        
-        options.forEach(option => {
-            const optionDiv = document.createElement('div');
-            optionDiv.className = 'option';
-            optionDiv.textContent = option;
-            optionDiv.onclick = () => alert(Вы выбрали: ${option}); // Исправлено использование шаблонной строки
-            optionsDiv.appendChild(optionDiv);
-        });
+  function showOptions() {
+    const optionsDiv = document.createElement('div'); 
+    optionsDiv.style.marginTop = '20px';
+    const options = ["12 июня 2011", "11 июня 2014", "14 июня 2012", "13 июня 2013"];
+    
+    options.forEach(option => {
+        const optionDiv = document.createElement('div');
+        optionDiv.className = 'option';
+        optionDiv.textContent = option;
+        optionDiv.onclick = () => alert(Вы выбрали: ${option}); // Исправлено использование шаблонной строки
+        optionsDiv.appendChild(optionDiv);
+    });
 
-        // Добавляем опции на страницу
-        const textElement = document.getElementById('text');
-        textElement.appendChild(optionsDiv);
-    }
+    // Добавляем опции на страницу
+    const textElement = document.getElementById('text');
+    textElement.appendChild(optionsDiv);
+}
 
-    // Запускаем функцию обратного отсчета при загрузке страницы
-    window.onload = delayLoad;
+// Запускаем функцию обратного отсчета при загрузке страницы
+window.onload = delayLoad;
