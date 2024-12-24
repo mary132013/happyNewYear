@@ -21,7 +21,18 @@
             overflow: hidden; /* Скрыть все элементы, кроме текста */
         }
         .loader {
-            display: none; /* Скрыть загрузчик */
+            display: block; /* Сделать загрузчик видимым */
+            font-size: 50px; /* Размер сердца */
+            color: red; /* Цвет сердца */
+            animation: heartbeat 1s infinite; /* Анимация пульсации */
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
         }
         #text {
             display: none; /* Скрыть текст изначально */
@@ -37,9 +48,7 @@
 </head>
 
 <body>
-    <div class="loader">
-        <!-- Загрузчик (сердце) можно удалить или оставить в зависимости от ваших предпочтений -->
-    </div>
+    <div class="loader">❤️</div> <!-- Сердце как загрузчик -->
 
     <div id="text"></div>
 
@@ -66,7 +75,7 @@
                 }
                 
                 type();
-                document.querySelector('.loader').style.display = 'none';
+                document.querySelector('.loader').style.display = 'none'; // Скрыть сердце после загрузки текста
             }, 10000); 
         }
 
