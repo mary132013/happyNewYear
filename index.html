@@ -4,59 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>С новым годом!☃️</title>
-    <style type="text/css">
-        html {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-        }
-        body {
-            background: url('images/photo_2024-12-24_18-27-11.jpg') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-           /* overflow: hidden; */
-        }
-   .snowflake {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-family: Arial, sans-serif;
-    pointer-events: none;
-    z-index: 9999;
-    font-size: 20px; /* Размер шрифта по умолчанию */
-}
-
-        .loader {
-            display: block;
-            font-size: 50px;
-            color: purple;
-            animation: heartbeat 1s infinite; 
-        }
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-        }
-        #text {
-            display: none;
-            font-size: 24px;
-            color: purple;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <div class="loader">💜</div> <!-- Сердце как загрузчик -->
