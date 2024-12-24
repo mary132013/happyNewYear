@@ -186,6 +186,7 @@ resultDiv.style.color = 'white'; // Цвет для "не угадала"
     textElement.appendChild(optionsDiv);
 }
 function displayDebutSongMessage() {
+     const textElement = document.getElementById('text');   
      textElement.innerHTML = '';   
     //const messageDiv = document.createElement('div');
     //messageDiv.className = 'debut-message'; // Класс для стилизации сообщения
@@ -210,9 +211,10 @@ function displayDebutSongMessage() {
 }
 
 function displayNextQuestion() {
-    const nextDiv = document.createElement('div');
-    nextDiv.className = 'next-question'; // Класс для стилизации следующего вопроса
-    document.body.appendChild(nextDiv);
+     const textElement = document.getElementById('text');   
+    //const nextDiv = document.createElement('div');
+    //nextDiv.className = 'next-question'; // Класс для стилизации следующего вопроса
+    //document.body.appendChild(nextDiv);
     textElement.innerHTML = '';   
     // Выводим текст "Ладненько, дальше"
     //nextDiv.textContent = "Ладненько, дальше";
