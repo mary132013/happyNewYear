@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            overflow: hidden; 
+            <!--overflow: hidden; -->
         }
         .loader {
             display: block;
@@ -50,6 +50,7 @@
     <div class="loader">💜</div> <!-- Сердце как загрузчик -->
     <div id="text"></div>
     <script>
+          document.getElementById('text').innerHTML = 'Скрипт работает!';
         function delayLoad() {
             let countdown = 10; // Начальное значение для обратного отсчета
             const textElement = document.getElementById('text');
