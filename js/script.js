@@ -596,7 +596,7 @@ function checkFinalAnswer(answer) {
     }
      // Создание ссылки для загрузки PDF
     setTimeout(() => {
-        const pdfLink = document.createElement('a');
+        const pdfLink = document.createElement('a'); 
         pdfLink.href = 'images/Подарочный сертификат Wildberries.pdf'; // Укажите путь к вашему PDF-файлу
         pdfLink.textContent = 'Скачать PDF';
         pdfLink.style.display = 'block'; // Делаем ссылку блочным элементом
