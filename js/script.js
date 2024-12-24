@@ -215,6 +215,7 @@ function displayNextQuestion() {
     const textElement = document.getElementById('text');   
     textElement.innerHTML = "Ладненько, дальше";
 
+     textElement.innerHTML = '';   
     // Через 3 секунды выводим следующий вопрос
     setTimeout(() => {
         textElement.innerHTML = "Кто самый младший? (нет, на этот раз вариантов не будет)";
@@ -240,7 +241,10 @@ function displayNextQuestion() {
                 displayNextQuestionWithLetters(); // Запускаем следующую функцию
             } else {
                 document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-47.jpg')";
-                textElement.innerHTML = "Как это ты меня не угадала?";
+                textElement.innerHTML = "Как это ты меня не угадала?";                
+                inputField.style.display = 'none'; // Скрываем текстовое поле
+                submitButton.style.display = 'none'; // Скрываем кнопку
+                displayNextQuestionWithLetters(); // Запускаем следующую функцию
             }
         };
         document.body.appendChild(submitButton);
@@ -249,7 +253,8 @@ function displayNextQuestion() {
 }
 
 function displayNextQuestionWithLetters() {
-    const textElement = document.getElementById('text');
+    const textElement = document.getElementById('text');    
+    textElement.innerHTML = '';   
     const questionText = "Кого называют Worldwide handsome?";
     let index = 0;
 
@@ -270,31 +275,182 @@ function displayNextQuestionWithLetters() {
             const submitButton = document.createElement('button');
             submitButton.textContent = 'Отправить';
             submitButton.onclick = () => {
-                const video = document.getElementById('myVideo');
                 const userAnswer = inputField.value.trim().toLowerCase(); // Получаем ответ и приводим к нижнему регистру
-                
-                // Здесь можно добавить логику проверки нового ответа
-                if (userAnswer === "джин") { // Предположим, правильный ответ "вайт"
-                   textElement.innerHTML += 'Есссс!';
-                     video.style.display = 'block';
-                    video.play();
-                }if (userAnswer === "сокджин") { // Предположим, правильный ответ "вайт"
-                    textElement.innerHTML += 'Есссс!';
-                     video.style.display = 'block';
-                    video.play();
-                }if (userAnswer === "ким сокджин") { // Предположим, правильный ответ "вайт"
-                    textElement.innerHTML += 'Есссс!';
-                 video.style.display = 'block';
-                    video.play();
+            
+                if (userAnswer === "джин" || userAnswer === "сокджин" || userAnswer === "ким сокджин") { 
+                    textElement.innerHTML = 'Есссс!';
+                    document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";
+                    displayAmbidextrousQuestion(); // Переход к следующему вопросу
                 } else {
-                   textElement.innerHTML += 'Как тааак??';
+                    textElement.innerHTML = 'В смысле не я??\n야야야야!!!';                    
+                    document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";                    
+                    displayAmbidextrousQuestion(); // Переход к следующему вопросу
                 }
             };
             document.body.appendChild(submitButton);
         }
     };
 
-    displayLetters(); // Запускаем вывод букв
+    displayLetters();
 }
+
+function displayAmbidextrousQuestion() {
+    const textElement = document.getElementById('text');    
+    textElement.innerHTML = '';   
+    const questionText = "Как ты думаешь, кто из них амбидекстер?";
+    let index = 0;
+
+    // Функция для вывода текста по буквам
+    const displayLetters = () => {
+        if (index < questionText.length) {
+            textElement.innerHTML += questionText[index]; // Добавляем букву к тексту
+            index++;
+            setTimeout(displayLetters, 200); // Задержка между буквами
+        } else {
+            // После завершения показа текста, выводим варианты ответов
+            const answers = ["Джин", "Чимин", "Тэхен", "Юнги"];
+            answers.forEach(answer => {
+                const answerButton = document.createElement('button');
+                answerButton.textContent = answer;
+                answerButton.onclick = () => checkAmbidextrousAnswer(answer);
+                document.body.appendChild(answerButton);
+            });
+        }
+    };
+
+    displayLetters();
+}
+
+function checkAmbidextrousAnswer(answer) {
+    const textElement = document.getElementById('text');    
+    if (answer === "Тэхен") {
+        textElement.innerHTML = 'Правильно!';
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-22.jpg')";
+        displayHopeWorldQuestion(); // Запускаем следующий вопрос
+    } else {
+        textElement.innerHTML = 'Не туда нажала что ли?';
+    }
+}
+
+function displayHopeWorldQuestion() {
+    const textElement = document.getElementById('text');    
+    textElement.innerHTML = '';   
+    const questionText = "Какой участник выпустил микстейп под названием Hope World? (Внимательно читай вопрос)";
+    let index = 0;
+
+    // Функция для вывода текста по буквам
+    const displayLetters = () => {
+        if (index < questionText.length) {
+            textElement.innerHTML += questionText[index]; // Добавляем букву к тексту
+            index++;
+            setTimeout(displayLetters, 200); // Задержка между буквами
+        } else {
+            // После завершения показа текста, выводим варианты ответов
+            const answers = ["Намджун", "Хосок", "Юнги"];
+            answers.forEach(answer => {
+                const answerButton = document.createElement('button');
+                answerButton.textContent = answer;
+                answerButton.onclick = () => checkHopeWorldAnswer(answer);
+                document.body.appendChild(answerButton);
+            });
+        }
+    };
+
+    displayLetters();
+}
+
+function checkHopeWorldAnswer(answer) {
+    const textElement = document.getElementById('text');    
+    if (answer === "Хосок") {
+        textElement.innerHTML = 'Угадала))\n I`m your hope, you`re my hope, i`m jhope!';
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-20.jpg')";
+        
+        // Запускаем следующий вопрос о лидере группы
+        displayLeaderQuestion();
+    } else {
+        textElement.innerHTML = 'Да я это, я!';        
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-20.jpg')";
+    }
+}
+
+function displayLeaderQuestion() {
+    const textElement = document.getElementById('text');    
+    textElement.innerHTML = '';   
+    const questionText = "Кто лидер в группе?";
+    let index = 0;
+
+    // Функция для вывода текста по буквам
+    const displayLetters = () => {
+        if (index < questionText.length) {
+            textElement.innerHTML += questionText[index]; // Добавляем букву к тексту
+            index++;
+            setTimeout(displayLetters, 200); // Задержка между буквами
+        } else {
+            // После завершения показа текста, выводим варианты ответов
+            const answers = ["Джин", "Чимин", "Юнги", "Намджун"];
+            answers.forEach(answer => {
+                const answerButton = document.createElement('button');
+                answerButton.textContent = answer;
+                answerButton.onclick = () => checkLeaderAnswer(answer);
+                document.body.appendChild(answerButton);
+            });
+        }
+    };
+
+    displayLetters();
+}
+
+function checkLeaderAnswer(answer) {
+    const textElement = document.getElementById('text');    
+    if (answer === "Намджун") {
+        textElement.innerHTML = 'Love yourself: Speak yourself!';
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-17.jpg')";
+        
+        // Запускаем следующий вопрос о псевдониме Юнги
+        displayYungiAliasQuestion();
+    } else {
+        textElement.innerHTML = 'Не правда...';        
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-17.jpg')";
+    }
+}
+
+function displayYungiAliasQuestion() {
+    const textElement = document.getElementById('text');    
+    textElement.innerHTML = '';   
+    const questionText = "Какой второй псевдоним у Юнги?";
+    let index = 0;
+
+    // Функция для вывода текста по буквам
+    const displayLetters = () => {
+        if (index < questionText.length) {
+            textElement.innerHTML += questionText[index]; // Добавляем букву к тексту
+            index++;
+            setTimeout(displayLetters, 200); // Задержка между буквами
+        } else {
+            // После завершения показа текста, выводим варианты ответов
+            const answers = ["AgustD", "ShadowD", "CipherD"];
+            answers.forEach(answer => {
+                const answerButton = document.createElement('button');
+                answerButton.textContent = answer;
+                answerButton.onclick = () => checkYungiAliasAnswer(answer);
+                document.body.appendChild(answerButton);
+            });
+        }
+    };
+
+    displayLetters();
+}
+
+function checkYungiAliasAnswer(answer) {
+    const textElement = document.getElementById('text');    
+    if (answer === "AgustD") {
+        textElement.innerHTML = '다 괜찮아질 거야!';
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-25.jpg')";
+    } else {
+        textElement.innerHTML = 'Прочитай Suga наоборот.. гений..';        
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-46-25.jpg')";
+    }
+}
+
 // Запускаем функцию обратного отсчета при загрузке страницы
 window.onload = delayLoad;
