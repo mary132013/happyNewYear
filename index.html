@@ -87,6 +87,10 @@
         function changeBackground1() {
             // Задаем новый фон
             document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
+        } 
+        function changeBackground2() {
+            // Задаем новый фон
+            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-32.jpg')";
         }
 
         function typeNewMessage(message) {
@@ -145,7 +149,7 @@
                     setTimeout(type, 100); // Задержка между буквами
                 } else {
                     // Смена фона после четвертого сообщения
-                    setTimeout(changeBackground, 5000); // Задержка перед сменой фона
+                    setTimeout(changeBackground2, 5000); // Задержка перед сменой фона
                 }
             }
             type();
