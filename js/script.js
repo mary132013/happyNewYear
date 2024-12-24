@@ -130,7 +130,7 @@ function changeBackground2() {
         type();   
     }
 
-  function showOptions() {
+function showOptions() {
     const optionsDiv = document.createElement('div'); 
     optionsDiv.style.marginTop = '20px';
     const options = ["12 июня 2011", "11 июня 2014", "14 июня 2012", "13 июня 2013"];
@@ -139,13 +139,19 @@ function changeBackground2() {
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
         optionDiv.textContent = option;
-       optionDiv.onclick = () => {
+        optionDiv.onclick = () => {
             const resultDiv = document.createElement('div');
-            document.body.appendChild(resultDiv); // Добавляем результат в тело документа
+            resultDiv.className = 'result'; // Добавляем класс для стилизации
+           
+             // Создаем контейнер для результата с фоном
+            const textContainer = document.createElement('div');
+            textContainer.className = 'text-background'; // Добавляем класс для фона
+            textContainer.appendChild(resultDiv); // Добавляем результат в контейнер
             
+            document.body.appendChild(textContainer); // Добавляем контейнер на страницу
             if (option === "13 июня 2013") {
                 // Меняем фон
-               document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
+                document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
 
                 // Выводим текст "молодец" по буквам
                 const text = "молодец";
@@ -157,11 +163,14 @@ function changeBackground2() {
                         index++;
                     } else {
                         clearInterval(interval);
+                        resultDiv.style.opacity = 1; // Плавное появление текста
                     }
                 }, 500); // Измените скорость вывода текста здесь (500 мс)
             } else {
                 resultDiv.textContent = "не угадала";
-               document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
+                resultDiv.style.color = 'purple'; // Цвет для "не угадала"
+                document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
+                resultDiv.style.opacity = 1; // Плавное появление текста
             }
         };
         optionsDiv.appendChild(optionDiv);
@@ -171,6 +180,7 @@ function changeBackground2() {
     const textElement = document.getElementById('text');
     textElement.appendChild(optionsDiv);
 }
+
 
 // Запускаем функцию обратного отсчета при загрузке страницы
 window.onload = delayLoad;
