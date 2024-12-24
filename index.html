@@ -49,168 +49,157 @@
 <body>
     <div class="loader">💜</div> <!-- Сердце как загрузчик -->
     <div id="text"></div>
-    <script>
-          document.getElementById('text').innerHTML = 'Скрипт работает!';
-        function delayLoad() {
-            let countdown = 10; // Начальное значение для обратного отсчета
-            const textElement = document.getElementById('text');
-            
-            // Обратный отсчет
-            const countdownInterval = setInterval(() => {
-                textElement.innerHTML = countdown; // Показываем текущее значение отсчета
-                countdown--;
-                if (countdown < 0) {
-                    clearInterval(countdownInterval); // Останавливаем отсчет
-                    textElement.style.display = 'none'; // Скрываем текст
-                    startMessage(); // Запускаем вывод сообщения
-                }
-            }, 1000); // Интервал в 1 секунду
-            
-            document.querySelector('.loader').style.display = 'block'; // Показываем загрузчик
-        }
-
-        function startMessage() {
-            const textElement = document.getElementById('text');
-            textElement.style.display = 'block';
-            const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
-            let index = 0;
-
-            // Выводим первое сообщение
-            function type() {
-                if (index < message.length) {
-                    textElement.innerHTML += message.charAt(index);
-                    index++;
-                    setTimeout(type, 100); 
-                } else {            
-                    setTimeout(() => {
-                        // Смена фона перед выводом нового сообщения
-                        changeBackground();
-                        
-                        const newMessage = 'Так вот, пожалуй, пора тебя помучить';
-                        index = 0; 
-                        textElement.innerHTML = '';
-                        typeNewMessage(newMessage); 
-                    }, 1000); 
-                }
+   <script>
+    function delayLoad() {
+        let countdown = 10; // Начальное значение для обратного отсчета
+        const textElement = document.getElementById('text');
+        const countdownInterval = setInterval(() => {
+            textElement.innerHTML = countdown; 
+            countdown--;
+            if (countdown < 0) {
+                clearInterval(countdownInterval);
+                textElement.style.display = 'none'; 
+                startMessage();  
             }
-            type();
-            document.querySelector('.loader').style.display = 'none'; 
+        }, 1000); 
+        document.querySelector('.loader').style.display = 'block';
+    }
+
+    function startMessage() {
+        const textElement = document.getElementById('text');
+        textElement.style.display = 'block';
+        const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
+        let index = 0;
+
+        function type() {
+            if (index < message.length) {
+                textElement.innerHTML += message.charAt(index);   
+                index++;  
+                setTimeout(type, 100); 
+            } else {   
+                setTimeout(() => {   
+                    changeBackground();  
+                    const newMessage = 'Так вот, пожалуй, пора тебя помучить';    
+                    index = 0;   
+                    textElement.innerHTML = '';    
+                    typeNewMessage(newMessage);   
+                }, 1000);   
+            }  
         }
+        type(); 
+        document.querySelector('.loader').style.display = 'none'; 
+    }
 
-        function changeBackground() {
-            // Задаем новый фон
-            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
-        }
+    function changeBackground() {
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
+    }
 
-        function typeNewMessage(message) {
-            const textElement = document.getElementById('text');
-            let index = 0;
+    function typeNewMessage(message) {
+        const textElement = document.getElementById('text');
+        let index = 0;
 
-            function type() {                if (index < message.length) {
-                    textElement.innerHTML += message.charAt(index);
-                    index++;
-                    setTimeout(type, 100); 
-                } else {
-                    setTimeout(() => {
-                        changeBackground1(); // Меняем фон снова
-                        const thirdMessage = "Начнем?";
-                        index = 0; 
-                        textElement.innerHTML = '';
-                        typeThirdMessage(thirdMessage);
-                    }, 5000); 
-                }
+        function type() {
+            if (index < message.length) {
+                textElement.innerHTML += message.charAt(index);
+                index++;
+                setTimeout(type, 100); 
+            } else {
+                setTimeout(() => {  
+                    changeBackground1();    
+                    const thirdMessage = "Начнем?";  
+                    index = 0;   
+                    textElement.innerHTML = '';  
+                    typeThirdMessage(thirdMessage);  
+                }, 5000);  
             }
-            type();
         }
+        type(); 
+    }
 
-        function changeBackground1() {
-            // Задаем новый фон
-            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
-        }
+    function changeBackground1() {
+        document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
+    }
 
-        function typeThirdMessage(message) {
-            const textElement = document.getElementById('text');
-            let index = 0;
+    function typeThirdMessage(message) {
+        const textElement = document.getElementById('text');
+        let index = 0;
 
-            function type() {
-                if (index < message.length) {
-                    textElement.innerHTML += message.charAt(index);
-                    index++;
-                    setTimeout(type, 100); 
-                } else {
-                    setTimeout(() => {
-                        const fourthMessage = "Это был не вопрос";
-                        index = 0; 
-                        textElement.innerHTML = '';
-                        typeFourthMessage(fourthMessage);
-                    }, 5000); 
-                }
-            }
-            type();
-        }
+        function type() {
+            if (index < message.length) {  
+                textElement.innerHTML += message.charAt(index);   
+                index++; 
+                setTimeout(type, 100); 
+            } else { 
+                setTimeout(() => {  
+                    const fourthMessage = "Это был не вопрос";  
+                    index = 0;  
+                    textElement.innerHTML = '';  
+                    typeFourthMessage(fourthMessage);  
+                }, 5000);   
+            } 
+        }    
+        type(); 
+    }
 
-        function typeFourthMessage(message) {
-            const textElement = document.getElementById('text');
-            let index = 0;
+    function typeFourthMessage(message) {
+        const textElement = document.getElementById('text');
+        let index = 0;
 
-            function type() {
-                if (index < message.length) {
-                    textElement.innerHTML += message.charAt(index);
-                    index++;
-                    setTimeout(type, 100); 
-                } else {
-                    setTimeout(() => {
-                        displayQuestion(); // Показать вопрос
-                    }, 5000); 
-                }
-            }
-            type();
-        }
+        function type() {   
+            if (index < message.length) {       
+                textElement.innerHTML += message.charAt(index);   
+                index++;    
+                setTimeout(type, 100);    
+            } else {  
+                setTimeout(() => {   
+                    displayQuestion();   
+                }, 5000);   
+            } 
+        }  
+        type();  
+    }
 
-        function displayQuestion() {
-            const textElement = document.getElementById('text');
-            textElement.innerHTML = ''; // Очищаем текст
-            const question = "Когда дебютировала моя любимая группа?";
-            let index = 0;
+    function displayQuestion() {
+        const textElement = document.getElementById('text');   
+        textElement.innerHTML = '';   
+        const question = "Когда дебютировала моя любимая группа?";     
+        let index = 0;
 
-            function type() {
-                if (index < question.length) {
-                    textElement.innerHTML += question.charAt(index);
-                    index++;
-                    setTimeout(type, 100); 
-                } else {
-                    setTimeout(() => {
-                        showOptions(); // Показать варианты ответа
-                    }, 1000); // Задержка перед показом вариантов ответа
-                }
-            }
-            type();
-        }
+        function type() { 
+            if (index < question.length) { 
+                textElement.innerHTML += question.charAt(index);   
+                index++;  
+                setTimeout(type, 100);   
+            } else {  
+                setTimeout(() => {  
+                    showOptions();   
+                }, 1000);  
+            }  
+        }  
+        type();   
+    }
 
-        function showOptions() {
-            const optionsDiv = document.createElement('div'); // Создаем новый контейнер для вариантов
-            optionsDiv.style.marginTop = '20px';
-            
-            const options = [
-                "12 июня 2011",
-                "11 июня 2014",
-                "14 июня 2012",
-                "13 июня 2013"
-            ];
+    function showOptions() {
+        const optionsDiv = document.createElement('div'); 
+        optionsDiv.style.marginTop = '20px';
+        const options = ["12 июня 2011", "11 июня 2014", "14 июня 2012", "13 июня 2013"];
+        
+        options.forEach(option => {
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option';
+            optionDiv.textContent = option;
+            optionDiv.onclick = () => alert(Вы выбрали: ${option}); // Исправлено использование шаблонной строки
+            optionsDiv.appendChild(optionDiv);
+        });
 
-            options.forEach(option => {
-                const optionDiv = document.createElement('div');
-                optionDiv.className = 'option';
-                optionDiv.textContent = option;
-                optionDiv.onclick = () => alert(Вы выбрали: ${option});
-                optionsDiv.appendChild(optionDiv);
-            });
+        // Добавляем опции на страницу
+        const textElement = document.getElementById('text');
+        textElement.appendChild(optionsDiv);
+    }
 
-            document.body.appendChild(optionsDiv); // Добавляем варианты на страницу
-        }
-
-        window.onload = delayLoad;
-    </script>
+    // Запускаем функцию обратного отсчета при загрузке страницы
+    window.onload = delayLoad;
+</script>
 </body>
 </html>
 
