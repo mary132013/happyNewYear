@@ -608,7 +608,6 @@ function checkFinalAnswer(answer) {
     const textElement = document.getElementById('text');    
     if (answer === "i purple you") {
   document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
-         const textElement = document.getElementById('text');    
     const buttons = document.querySelectorAll('button'); // Выбираем все кнопки на странице
     // Скрываем кнопки
     buttons.forEach(button => {
@@ -616,7 +615,7 @@ function checkFinalAnswer(answer) {
     });
         createSnowflakes(); // Запускаем функцию для создания снежинок
     setTimeout(() => {
-       textElement.innerHTML = "А теперь напиши мне эту фраза";
+       textElement.innerHTML = "А теперь напиши мне эту фразу";
     }, 3000); // Задержка перед показом ссылки (например, 3 секунды)
     } else {        
        textElement.innerHTML = "Нееет";
