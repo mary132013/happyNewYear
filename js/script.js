@@ -152,13 +152,14 @@ function showOptions() {
             if (option === "13 июня 2013") {
                 // Меняем фон
                 document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
-
+resultDiv.style.color = 'white'; // Цвет для "не угадала"
                 // Выводим текст "молодец" по буквам
                 const text = "молодец";
                 let index = 0;
 
                 const interval = setInterval(() => {
                     if (index < text.length) {
+                        resultDiv.style.color = 'white'; // Цвет для "не угадала"
                         resultDiv.textContent += text[index];
                         index++;
                     } else {
@@ -166,10 +167,10 @@ function showOptions() {
                         resultDiv.style.opacity = 1; // Плавное появление текста
                     }
                 }, 500); // Измените скорость вывода текста здесь (500 мс)
-            } else {
-                resultDiv.textContent = "не угадала";
-                resultDiv.style.color = 'purple'; // Цвет для "не угадала"
+            } else {                
                 document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-37.jpg')";
+                resultDiv.textContent = "не угадала";
+                resultDiv.style.color = 'white'; // Цвет для "не угадала"
                 resultDiv.style.opacity = 1; // Плавное появление текста
             }
         };
