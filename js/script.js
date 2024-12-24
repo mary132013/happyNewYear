@@ -290,11 +290,15 @@ function displayNextQuestionWithLetters() {
                     if (userAnswer === "джин" || userAnswer === "сокджин" || userAnswer === "ким сокджин") { 
                         textElement.innerHTML = 'Есссс!';
                         document.body.style.backgroundImage = "url('images/photo_2024-12-24_23-45-37.jpg')";
-                        displayAmbidextrousQuestion(); // Переход к следующему вопросу
+                          setTimeout(() => {
+            displayAmbidextrousQuestion();
+        }, 2000); // Переход к следующему вопросу
                     } else {
                         textElement.innerHTML = 'В смысле не я??\n야야야야!!!';                    
                         document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-27.jpg')";                    
-                        displayAmbidextrousQuestion(); // Переход к следующему вопросу
+                        setTimeout(() => {
+            displayAmbidextrousQuestion();
+        }, 2000); // Переход к следующему вопросу
                     }
                 }, 2000); // Задержка в 2 секунды перед проверкой ответа
             };
@@ -590,6 +594,18 @@ function checkFinalAnswer(answer) {
           document.body.style.backgroundImage = "url('images/photo_2024-12-25_01-38-13.jpg')";  
         createSnowflakes(); // Запускаем функцию для создания снежинок
     }
+     // Создание ссылки для загрузки PDF
+    setTimeout(() => {
+        const pdfLink = document.createElement('a');
+        pdfLink.href = 'images/Подарочный сертификат Wildberries.pdf'; // Укажите путь к вашему PDF-файлу
+        pdfLink.textContent = 'Скачать PDF';
+        pdfLink.style.display = 'block'; // Делаем ссылку блочным элементом
+        pdfLink.style.marginTop = '20px'; // Добавляем отступ сверху
+        pdfLink.style.fontSize = '20px'; // Увеличиваем размер шрифта
+        pdfLink.style.color = '#fff'; // Изменяем цвет текста, если нужно
+
+        document.body.appendChild(pdfLink); // Добавляем ссылку на страницу
+    }, 3000); // Задержка перед показом ссылки (например, 3 секунды)
 }
 
 function createSnowflakes() {
