@@ -44,11 +44,24 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
+        .options {
+            display: none;
+            margin-top: 20px;
+        }
+        .option {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div class="loader">💜</div> <!-- Сердце как загрузчик -->
+    <div class="loader">❤️</div>
     <div id="text"></div>
+    <div class="options" id="options"></div>
     <script>
         function delayLoad() {
             setTimeout(() => {
@@ -65,14 +78,12 @@
                         setTimeout(type, 100); 
                     } else {            
                         setTimeout(() => {
-                            // Смена фона перед выводом нового сообщения
-                            changeBackground();
-                            
-                            const newMessage = 'Так вот, пожалуй, пора тебя помучить';
+                            changeBackground1();
+                            const thirdMessage = "Начнем?";
                             index = 0; 
                             textElement.innerHTML = '';
-                            typeNewMessage(newMessage); 
-                        }, 1000); 
+                            typeThirdMessage(thirdMessage);
+                        }, 5000); 
                     }
                 }
                 type();
@@ -80,40 +91,8 @@
             }, 10000); 
         }
 
-        function changeBackground() {
-            // Задаем новый фон
-            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
-        }
         function changeBackground1() {
-            // Задаем новый фон
-            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
-        } 
-        function changeBackground2() {
-            // Задаем новый фон
-            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-32.jpg')";
-        }
-
-        function typeNewMessage(message) {
-            const textElement = document.getElementById('text');
-            let index = 0;
-
-            function type() {
-                if (index < message.length) {
-                    textElement.innerHTML += message.charAt(index);
-                    index++;
-                    setTimeout(type, 100); // Задержка между буквами
-                } else {
-                    // После второго сообщения ждем 5 секунд, затем меняем фон и выводим третий текст
-                    setTimeout(() => {
-                        changeBackground1();
-                        const thirdMessage = "Начнем?";
-                        index = 0; 
-                        textElement.innerHTML = '';
-                        typeThirdMessage(thirdMessage);
-                    }, 5000); // Задержка перед сменой фона
-                }
-            }
-            type();
+            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
         }
 
         function typeThirdMessage(message) {
@@ -124,39 +103,43 @@
                 if (index < message.length) {
                     textElement.innerHTML += message.charAt(index);
                     index++;
-                    setTimeout(type, 100); // Задержка между буквами
+                    setTimeout(type, 100); 
                 } else {
-                    // После третьего сообщения ждем 5 секунд и выводим четвертое сообщение
                     setTimeout(() => {
                         const fourthMessage = "Это был не вопрос";
                         index = 0; 
                         textElement.innerHTML = '';
                         typeFourthMessage(fourthMessage);
-                    }, 5000); // Задержка перед выводом следующего сообщения
+                    }, 5000); 
                 }
             }
             type();
         }
 
-        function typeFourthMessage(message) {
-            const textElement = document.getElementById('text');
+        function typeFourthMessage(message) {            const textElement = document.getElementById('text');
             let index = 0;
 
             function type() {
                 if (index < message.length) {
                     textElement.innerHTML += message.charAt(index);
                     index++;
-                    setTimeout(type, 100); // Задержка между буквами
+                    setTimeout(type, 100); 
                 } else {
                     // Смена фона после четвертого сообщения
-                    setTimeout(() =>{
+                    setTimeout(() => {
                         changeBackground2();
-                        displayQuestion(), 5000); // Задержка перед сменой фона
+                        displayQuestion();
+                    }, 5000); // Задержка перед сменой фона
                 }
             }
             type();
         }
-  function displayQuestion() {
+
+        function changeBackground2() {
+            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
+        }
+
+        function displayQuestion() {
             const textElement = document.getElementById('text');
             textElement.innerHTML = ''; // Очищаем текст
             const question = "Когда дебютировала моя любимая группа?";
@@ -195,7 +178,9 @@
                 optionsDiv.appendChild(optionDiv);
             });
         }
+
         window.onload = delayLoad;
     </script>
 </body>
 </html>
+
