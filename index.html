@@ -149,12 +149,52 @@
                     setTimeout(type, 100); // Задержка между буквами
                 } else {
                     // Смена фона после четвертого сообщения
-                    setTimeout(changeBackground2, 5000); // Задержка перед сменой фона
+                    setTimeout(() =>{
+                        changeBackground2();
+                        displayQuestion(), 5000); // Задержка перед сменой фона
+                }
+            }
+            type();
+        }
+  function displayQuestion() {
+            const textElement = document.getElementById('text');
+            textElement.innerHTML = ''; // Очищаем текст
+            const question = "Когда дебютировала моя любимая группа?";
+            let index = 0;
+
+            function type() {
+                if (index < question.length) {
+                    textElement.innerHTML += question.charAt(index);
+                    index++;
+                    setTimeout(type, 100); 
+                } else {
+                    setTimeout(() => {
+                        showOptions();
+                    }, 1000); // Задержка перед показом вариантов ответа
                 }
             }
             type();
         }
 
+        function showOptions() {
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.style.display = 'block';
+            
+            const options = [
+                "12 июня 2011",
+                "11 июня 2014",
+                "14 июня 2012",
+                "13 июня 2013"
+            ];
+
+            options.forEach(option => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => alert(Вы выбрали: ${option});
+                optionsDiv.appendChild(optionDiv);
+            });
+        }
         window.onload = delayLoad;
     </script>
 </body>
