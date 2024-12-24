@@ -32,7 +32,7 @@
         background-color: red;
         position: relative;
         animation: heartbeat 1s infinite;
-        transform: rotate(0deg); /* Поворачиваем сердце на 45 градусов */
+        transform: rotate(90deg); /* Поворачиваем сердце на 45 градусов */
     }
     .heart::before,
     .heart::after {
@@ -53,10 +53,10 @@
     }
     @keyframes heartbeat {
         0%, 100% {
-            transform: scale(1) rotate(0deg); /* Сохраняем поворот при анимации */
+            transform: scale(1) rotate(90deg); /* Сохраняем поворот при анимации */
         }
         50% {
-            transform: scale(1.1) rotate(0deg);
+            transform: scale(1.1) rotate(90deg);
         }
     }
     #text {
