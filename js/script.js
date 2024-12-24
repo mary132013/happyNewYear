@@ -3,12 +3,9 @@
         let countdown = 10; // Начальное значение для обратного отсчета
         const textElement = document.getElementById('text');
         const countdownInterval = setInterval(() => {
-            textElement.innerHTML = countdown; 
             countdown--;
             if (countdown < 0) {
                 clearInterval(countdownInterval);
-                textElement.style.display = 'none'; 
-                textElement.innerHTML = '';  
                 startMessage();  
             }
         }, 1000); 
