@@ -282,7 +282,7 @@ function displayNextQuestionWithLetters() {
                     textElement.innerHTML += 'Есссс!';
                      video.style.display = 'block';
                     video.play();
-                }}if (userAnswer === "ким сокджин") { // Предположим, правильный ответ "вайт"
+                }if (userAnswer === "ким сокджин") { // Предположим, правильный ответ "вайт"
                     textElement.innerHTML += 'Есссс!';
                  video.style.display = 'block';
                     video.play();
