@@ -44,55 +44,87 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-        .options {
-            display: none;
-            margin-top: 20px;
-        }
-        .option {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
-            padding: 10px;
-            margin: 5px;
-            cursor: pointer;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
-    <div class="loader">❤️</div>
+    <div class="loader">💜</div> <!-- Сердце как загрузчик -->
     <div id="text"></div>
-    <div class="options" id="options"></div>
     <script>
         function delayLoad() {
-            setTimeout(() => {
-                const textElement = document.getElementById('text');
-                textElement.style.display = 'block';
-                const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
-                let index = 0;
-
-                // Выводим первое сообщение
-                function type() {
-                    if (index < message.length) {
-                        textElement.innerHTML += message.charAt(index);
-                        index++;
-                        setTimeout(type, 100); 
-                    } else {            
-                        setTimeout(() => {
-                            changeBackground1();
-                            const thirdMessage = "Начнем?";
-                            index = 0; 
-                            textElement.innerHTML = '';
-                            typeThirdMessage(thirdMessage);
-                        }, 5000); 
-                    }
+            let countdown = 10; // Начальное значение для обратного отсчета
+            const textElement = document.getElementById('text');
+            
+            // Обратный отсчет
+            const countdownInterval = setInterval(() => {
+                textElement.innerHTML = countdown; // Показываем текущее значение отсчета
+                countdown--;
+                if (countdown < 0) {
+                    clearInterval(countdownInterval); // Останавливаем отсчет
+                    textElement.style.display = 'none'; // Скрываем текст
+                    startMessage(); // Запускаем вывод сообщения
                 }
-                type();
-                document.querySelector('.loader').style.display = 'none'; 
-            }, 10000); 
+            }, 1000); // Интервал в 1 секунду
+            
+            document.querySelector('.loader').style.display = 'block'; // Показываем загрузчик
+        }
+
+        function startMessage() {
+            const textElement = document.getElementById('text');
+            textElement.style.display = 'block';
+            const message = "Я решила, что давно (полгода точно) не проводила тестов (читай: 'издевалась')";
+            let index = 0;
+
+            // Выводим первое сообщение
+            function type() {
+                if (index < message.length) {
+                    textElement.innerHTML += message.charAt(index);
+                    index++;
+                    setTimeout(type, 100); 
+                } else {            
+                    setTimeout(() => {
+                        // Смена фона перед выводом нового сообщения
+                        changeBackground();
+                        
+                        const newMessage = 'Так вот, пожалуй, пора тебя помучить';
+                        index = 0; 
+                        textElement.innerHTML = '';
+                        typeNewMessage(newMessage); 
+                    }, 1000); 
+                }
+            }
+            type();
+            document.querySelector('.loader').style.display = 'none'; 
+        }
+
+        function changeBackground() {
+            // Задаем новый фон
+            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
+        }
+
+        function typeNewMessage(message) {
+            const textElement = document.getElementById('text');
+            let index = 0;
+
+            function type() {                if (index < message.length) {
+                    textElement.innerHTML += message.charAt(index);
+                    index++;
+                    setTimeout(type, 100); 
+                } else {
+                    setTimeout(() => {
+                        changeBackground1(); // Меняем фон снова
+                        const thirdMessage = "Начнем?";
+                        index = 0; 
+                        textElement.innerHTML = '';
+                        typeThirdMessage(thirdMessage);
+                    }, 5000); 
+                }
+            }
+            type();
         }
 
         function changeBackground1() {
-            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-16.jpg')";
+            // Задаем новый фон
+            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
         }
 
         function typeThirdMessage(message) {
@@ -116,7 +148,8 @@
             type();
         }
 
-        function typeFourthMessage(message) {            const textElement = document.getElementById('text');
+        function typeFourthMessage(message) {
+            const textElement = document.getElementById('text');
             let index = 0;
 
             function type() {
@@ -125,18 +158,12 @@
                     index++;
                     setTimeout(type, 100); 
                 } else {
-                    // Смена фона после четвертого сообщения
                     setTimeout(() => {
-                        changeBackground2();
-                        displayQuestion();
-                    }, 5000); // Задержка перед сменой фона
+                        displayQuestion(); // Показать вопрос
+                    }, 5000); 
                 }
             }
             type();
-        }
-
-        function changeBackground2() {
-            document.body.style.backgroundImage = "url('images/photo_2024-12-24_18-27-20.jpg')";
         }
 
         function displayQuestion() {
@@ -152,7 +179,7 @@
                     setTimeout(type, 100); 
                 } else {
                     setTimeout(() => {
-                        showOptions();
+                        showOptions(); // Показать варианты ответа
                     }, 1000); // Задержка перед показом вариантов ответа
                 }
             }
@@ -160,8 +187,8 @@
         }
 
         function showOptions() {
-            const optionsDiv = document.getElementById('options');
-            optionsDiv.style.display = 'block';
+            const optionsDiv = document.createElement('div'); // Создаем новый контейнер для вариантов
+            optionsDiv.style.marginTop = '20px';
             
             const options = [
                 "12 июня 2011",
@@ -177,6 +204,8 @@
                 optionDiv.onclick = () => alert(Вы выбрали: ${option});
                 optionsDiv.appendChild(optionDiv);
             });
+
+            document.body.appendChild(optionsDiv); // Добавляем варианты на страницу
         }
 
         window.onload = delayLoad;
